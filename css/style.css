@@ -99,7 +99,20 @@ img { max-width: 100%; }
   border-bottom: 1px solid var(--border);
   transition: var(--transition);
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 0.5rem 0 !important;
 }
+
+#mainNav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#mainNav .d-flex.order-lg-last {
+  margin-left: auto;
+  order: 2;
+}
+
 [data-theme="light"] #mainNav {
   background: rgba(244,246,251,0.88);
 }
@@ -143,6 +156,68 @@ img { max-width: 100%; }
 .navbar-toggler { border: 1px solid var(--border) !important; padding: .35rem .55rem !important; }
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(17,24,39,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* ── MOBILE NAVBAR RESPONSIVENESS ────────────────────────────────── */
+@media (max-width: 991px) {
+  #mainNav {
+    height: auto;
+    padding: 0.75rem 0;
+  }
+  
+  .navbar-collapse {
+    margin-top: 1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  
+  .navbar-nav {
+    flex-direction: column;
+    gap: 0.5rem !important;
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 0.6rem 1rem !important;
+    font-size: 0.95rem;
+  }
+  
+  .navbar-nav .nav-link.active::after {
+    display: none;
+  }
+  
+  .navbar-nav .nav-link.active {
+    background: var(--accent-dim) !important;
+    border-radius: var(--radius-sm);
+  }
+  
+  .d-flex.order-lg-last {
+    width: 100%;
+    justify-content: space-between !important;
+  }
+}
+
+@media (max-width: 576px) {
+  #mainNav {
+    padding: 0.5rem 0;
+  }
+  
+  .nav-brand {
+    font-size: 1rem;
+  }
+  
+  .navbar-collapse {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.9rem;
+  }
+  
+  .navbar-nav .nav-item {
+    width: 100%;
+  }
 }
 
 /* ── PAGE LAYOUT ─────────────────────────────────────────────────── */
