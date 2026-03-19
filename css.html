@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rajesh Karki</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet"/>
+  <style>
+    .demo-panel {
+      background: #f9fafb; border: 1px solid #e5e7eb;
+      border-radius: var(--radius); padding: 1.75rem; height: 100%;
+    }
+    /* Live animation demo balls */
+    .ball-spin  { animation: css-spin  2s linear infinite; }
+    .ball-pulse { animation: css-pulse 1.5s ease-in-out infinite; }
+    .ball-shake { animation: css-shake 1s ease-in-out infinite; }
+    @keyframes css-spin  { to { transform: rotate(360deg); } }
+    @keyframes css-pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2)} }
+    @keyframes css-shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+
+    /* Hover transition demos */
+    .hover-demo-btn {
+      padding: .55rem 1.2rem; border-radius: var(--radius-sm); font-weight: 600;
+      font-size: .82rem; cursor: pointer; border: 1px solid;
+      font-family: var(--font-head);
+    }
+    .hd-1 { background: #2563eb; color:#fff; border-color:#2563eb; transition: transform .25s, box-shadow .25s; }
+    .hd-1:hover { transform:scale(1.07); box-shadow:0 8px 24px rgba(37, 99, 235, .4); }
+    .hd-2 { background: transparent; color:#ef4444; border-color:#ef4444; transition: background .25s, color .25s; }
+    .hd-2:hover { background:#ef4444; color:#fff; }
+    .hd-3 { background: #f59e0b; color:#000; border-color:#f59e0b; transition: border-radius .3s, letter-spacing .3s; }
+    .hd-3:hover { border-radius:0; letter-spacing:3px; }
+    .hd-4 { background:#f3f4f6; color:#111827; border-color:#d1d5db; transition: transform .25s, background .25s; }
+    .hd-4:hover { background:#e5e7eb; transform:translateY(-4px); }
+
+    /* Grid demo */
+    .grid-demo {
+      display: grid;
+      gap: .5rem;
+    }
+    .grid-cell {
+      background: #dbeafe; border: 1px solid #bfdbfe;
+      border-radius: 6px; padding: .6rem; text-align: center;
+      font-size: .72rem; font-weight: 700; color: #2563eb;
+      transition: background .2s;
+    }
+    .grid-cell:hover { background: #2563eb; color:#fff; }
+    .grid-cell.span2 { grid-column: span 2; }
+    .grid-cell.span3 { grid-column: span 3; }
+
+    /* CSS Variables demo */
+    .var-demo-box {
+      border-radius: var(--radius-sm); padding: .7rem 1rem;
+      font-family: 'Courier New', monospace; font-size: .78rem;
+      border: 1px solid var(--border2); margin-bottom: .4rem;
+    }
+  </style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand nav-brand" href="index.html">Rajesh Karki</a>
+    <div class="d-flex align-items-center gap-2 order-lg-last">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme"><i class="bi bi-sun-fill"></i></button>
+      <button class="navbar-toggler ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house me-1"></i>Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-layers me-1"></i>Full Stack</a></li>
+        <li class="nav-item"><a class="nav-link" href="html.html"><i class="bi bi-filetype-html me-1"></i>HTML</a></li>
+        <li class="nav-item"><a class="nav-link" href="css.html"><i class="bi bi-filetype-css me-1"></i>CSS</a></li>
+        <li class="nav-item"><a class="nav-link" href="bootstrap.html"><i class="bi bi-bootstrap me-1"></i>Bootstrap</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript.html"><i class="bi bi-filetype-js me-1"></i>JavaScript</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <i class="page-hero-icon">🎨</i>
+      <h1 class="section-title"><span style="color:var(--rose)">CSS</span> — Cascading<br>Style Sheets</h1>
+      <div class="divider" style="background:linear-gradient(90deg,var(--rose),var(--amber))"></div>
+      <p class="section-lead max-w-md">CSS transforms plain HTML into beautiful, responsive, and animated web experiences. It controls everything from colours and typography to complex layouts and smooth animations.</p>
+    </div>
+  </div>
+
+  <!-- COLOURS & VARIABLES -->
+  <section>
+    <div class="container">
+      <div class="row align-items-start g-4">
+        <div class="col-lg-6 reveal">
+          <span class="eyebrow">Styling</span>
+          <h2 class="section-title">Colours & CSS Variables</h2>
+          <div class="divider" style="background:linear-gradient(90deg,var(--rose),var(--amber))"></div>
+          <p style="color:var(--text2);line-height:1.75;margin-bottom:1.5rem;">CSS custom properties (variables) allow you to define reusable values — making themes, dark mode, and design consistency effortless.</p>
+          <div class="code-block">
+<span class="c-s">:root</span> {<br>
+&nbsp;&nbsp;<span class="c-k">--accent</span>: <span class="c-v">#00e5ff</span>;<br>
+&nbsp;&nbsp;<span class="c-k">--bg</span>: <span class="c-v">#07090f</span>;<br>
+&nbsp;&nbsp;<span class="c-k">--text</span>: <span class="c-v">#e8edf8</span>;<br>
+&nbsp;&nbsp;<span class="c-k">--radius</span>: <span class="c-v">14px</span>;<br>
+}<br>
+<span class="c-s">.button</span> {<br>
+&nbsp;&nbsp;<span class="c-k">background</span>: <span class="c-v">var(--accent)</span>;<br>
+&nbsp;&nbsp;<span class="c-k">border-radius</span>: <span class="c-v">var(--radius)</span>;<br>
+}
+          </div>
+        </div>
+        <div class="col-lg-6 reveal reveal-d2">
+          <div class="demo-label" style="margin-top:1rem;"><i class="bi bi-palette"></i> Live Colour Palette — Click to Copy CSS</div>
+          <div class="row g-2">
+            <div class="col-6"><div class="swatch" style="background:linear-gradient(135deg,#00e5ff,#0077aa);" onclick="copyCSS('--accent: #00e5ff')"><span>--accent #00e5ff</span></div></div>
+            <div class="col-6"><div class="swatch" style="background:linear-gradient(135deg,#ffab40,#e67e00);" onclick="copyCSS('--amber: #ffab40')"><span>--amber #ffab40</span></div></div>
+            <div class="col-6"><div class="swatch" style="background:linear-gradient(135deg,#ff5c8d,#c62a5b);" onclick="copyCSS('--rose: #ff5c8d')"><span>--rose #ff5c8d</span></div></div>
+            <div class="col-6"><div class="swatch" style="background:linear-gradient(135deg,#00e676,#009e52);" onclick="copyCSS('--emerald: #00e676')"><span>--emerald #00e676</span></div></div>
+            <div class="col-6"><div class="swatch" style="background:linear-gradient(135deg,#07090f,#111827);" onclick="copyCSS('--bg: #07090f')" style="border:1px solid var(--border2)"><span style="color:rgba(255,255,255,.4)">--bg #07090f</span></div></div>
+            <div class="col-6"><div class="swatch" style="background:linear-gradient(135deg,#e8edf8,#a8b2cc);" onclick="copyCSS('--text: #e8edf8')"><span style="color:rgba(0,0,0,.5)">--text #e8edf8</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLEXBOX & GRID -->
+  <section style="background:var(--bg2);border-top:1px solid var(--border2);">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-6 text-center reveal">
+          <span class="eyebrow">Layout Systems</span>
+          <h2 class="section-title">Flexbox & CSS Grid</h2>
+          <div class="divider centered" style="background:linear-gradient(90deg,var(--rose),var(--amber))"></div>
+        </div>
+      </div>
+      <div class="row g-4">
+        <!-- Flexbox -->
+        <div class="col-lg-6 reveal reveal-d1">
+          <div class="demo-panel">
+            <div class="demo-label"><i class="bi bi-layout-three-columns"></i> Flexbox</div>
+            <div class="code-block mb-3" style="font-size:.75rem;">
+<span class="c-s">.container</span> {<br>
+&nbsp;&nbsp;<span class="c-k">display</span>: <span class="c-v">flex</span>;<br>
+&nbsp;&nbsp;<span class="c-k">gap</span>: <span class="c-v">0.5rem</span>;<br>
+&nbsp;&nbsp;<span class="c-k">flex-wrap</span>: <span class="c-v">wrap</span>;<br>
+&nbsp;&nbsp;<span class="c-k">justify-content</span>: <span class="c-v">flex-start</span>;<br>
+}
+            </div>
+            <div class="flex-demo-area mb-3" style="display:flex;gap:.5rem;flex-wrap:wrap;">
+              <div class="flex-item-demo">Flex</div>
+              <div class="flex-item-demo">Items</div>
+              <div class="flex-item-demo">Wrap</div>
+              <div class="flex-item-demo">Automatically</div>
+              <div class="flex-item-demo">No JS!</div>
+            </div>
+            <div class="flex-demo-area mb-2" style="display:flex;justify-content:space-between;align-items:center;gap:.4rem;">
+              <div class="flex-item-demo">Space</div>
+              <div class="flex-item-demo">Between</div>
+              <div class="flex-item-demo">Items</div>
+            </div>
+            <p style="font-size:.77rem;color:var(--text3);margin-top:.5rem;">Flexbox is ideal for one-dimensional layouts — rows or columns.</p>
+          </div>
+        </div>
+        <!-- Grid -->
+        <div class="col-lg-6 reveal reveal-d2">
+          <div class="demo-panel">
+            <div class="demo-label"><i class="bi bi-grid-3x3"></i> CSS Grid</div>
+            <div class="code-block mb-3" style="font-size:.75rem;">
+<span class="c-s">.grid</span> {<br>
+&nbsp;&nbsp;<span class="c-k">display</span>: <span class="c-v">grid</span>;<br>
+&nbsp;&nbsp;<span class="c-k">grid-template-columns</span>: <span class="c-v">repeat(3, 1fr)</span>;<br>
+&nbsp;&nbsp;<span class="c-k">gap</span>: <span class="c-v">0.5rem</span>;<br>
+}
+            </div>
+            <div class="grid-demo mb-2" style="grid-template-columns:repeat(3,1fr)">
+              <div class="grid-cell span3" style="background:rgba(0,229,255,.2);border-color:rgba(0,229,255,.4);">grid-column: span 3</div>
+              <div class="grid-cell">1fr</div>
+              <div class="grid-cell span2" style="background:rgba(255,171,64,.1);border-color:rgba(255,171,64,.3);color:var(--amber)">span 2</div>
+              <div class="grid-cell span2" style="background:rgba(255,92,141,.1);border-color:rgba(255,92,141,.3);color:var(--rose)">span 2</div>
+              <div class="grid-cell">1fr</div>
+              <div class="grid-cell">1fr</div><div class="grid-cell">1fr</div><div class="grid-cell">1fr</div>
+            </div>
+            <p style="font-size:.77rem;color:var(--text3);margin-top:.5rem;">CSS Grid is perfect for two-dimensional layouts with rows and columns.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANIMATIONS & TRANSITIONS -->
+  <section>
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-6 text-center reveal">
+          <span class="eyebrow">Motion Design</span>
+          <h2 class="section-title">Animations & Transitions</h2>
+          <div class="divider centered"></div>
+        </div>
+      </div>
+      <div class="row g-4">
+        <!-- Keyframe Animations -->
+        <div class="col-lg-5 reveal reveal-d1">
+          <div class="demo-panel">
+            <div class="demo-label"><i class="bi bi-film"></i> CSS @keyframes Animations</div>
+            <div class="d-flex justify-content-around align-items-center flex-wrap gap-4 py-3">
+              <div style="text-align:center;">
+                <div class="ball-spin" style="width:50px;height:50px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--amber));margin:0 auto 10px;"></div>
+                <div style="font-size:.7rem;color:var(--text3);">rotate(360deg)</div>
+              </div>
+              <div style="text-align:center;">
+                <div class="ball-pulse" style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--amber));margin:0 auto 10px;"></div>
+                <div style="font-size:.7rem;color:var(--text3);">scale(1.2)</div>
+              </div>
+              <div style="text-align:center;">
+                <div class="ball-shake" style="width:50px;height:50px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--rose));margin:0 auto 10px;"></div>
+                <div style="font-size:.7rem;color:var(--text3);">translateX</div>
+              </div>
+            </div>
+            <div class="code-block mt-3" style="font-size:.72rem;">
+<span class="c-k">@keyframes</span> <span class="c-n">spin</span> {<br>
+&nbsp;&nbsp;<span class="c-v">to</span> { <span class="c-k">transform</span>: <span class="c-v">rotate(360deg)</span>; }<br>
+}<br>
+<span class="c-s">.element</span> {<br>
+&nbsp;&nbsp;<span class="c-k">animation</span>: <span class="c-v">spin 2s linear infinite</span>;<br>
+}
+            </div>
+          </div>
+        </div>
+        <!-- Hover Transitions -->
+        <div class="col-lg-7 reveal reveal-d2">
+          <div class="demo-panel">
+            <div class="demo-label"><i class="bi bi-cursor"></i> Hover Transitions — Mouse Over Each Button</div>
+            <div class="d-flex flex-wrap gap-3 mb-4">
+              <button class="hover-demo-btn hd-1">Scale + Glow</button>
+              <button class="hover-demo-btn hd-2">Fill on Hover</button>
+              <button class="hover-demo-btn hd-3">Morph Shape</button>
+              <button class="hover-demo-btn hd-4">Lift Effect</button>
+            </div>
+            <div class="code-block" style="font-size:.72rem;">
+<span class="c-s">.btn</span> {<br>
+&nbsp;&nbsp;<span class="c-k">transition</span>: <span class="c-v">transform .25s, box-shadow .25s</span>;<br>
+}<br>
+<span class="c-s">.btn:hover</span> {<br>
+&nbsp;&nbsp;<span class="c-k">transform</span>: <span class="c-v">scale(1.07)</span>;<br>
+&nbsp;&nbsp;<span class="c-k">box-shadow</span>: <span class="c-v">0 8px 24px rgba(0,229,255,.4)</span>;<br>
+}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOX MODEL & RESPONSIVE -->
+  <section style="background:var(--bg2);border-top:1px solid var(--border2);">
+    <div class="container">
+      <div class="row g-5 align-items-start">
+        <!-- Box Model -->
+        <div class="col-lg-5 reveal">
+          <span class="eyebrow">The Box Model</span>
+          <h2 class="section-title">Every Element is a Box</h2>
+          <div class="divider" style="background:linear-gradient(90deg,var(--rose),var(--amber))"></div>
+          <p style="color:var(--text2);line-height:1.75;margin-bottom:1.5rem;">Every HTML element is rendered as a rectangular box composed of four layers: content, padding, border, and margin.</p>
+          <div class="box-model-wrap">
+            <div class="bm-margin">
+              <span class="bm-label" style="color:var(--emerald);">margin</span>
+              <div class="bm-border">
+                <span class="bm-label" style="color:var(--amber);">border</span>
+                <div class="bm-padding">
+                  <span class="bm-label" style="color:var(--accent);">padding</span>
+                  <div class="bm-content">Content Area</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 d-flex flex-wrap gap-2" style="font-size:.8rem;">
+            <span class="chip-emerald"><i class="bi bi-square me-1"></i>margin</span>
+            <span class="chip-amber"><i class="bi bi-square me-1"></i>border</span>
+            <span class="chip"><i class="bi bi-square me-1"></i>padding</span>
+            <span class="chip-rose"><i class="bi bi-square me-1"></i>content</span>
+          </div>
+        </div>
+        <!-- Responsive Media Queries -->
+        <div class="col-lg-7 reveal reveal-d2">
+          <span class="eyebrow">Responsive Design</span>
+          <h2 class="section-title">Media Queries</h2>
+          <div class="divider" style="background:linear-gradient(90deg,var(--rose),var(--amber))"></div>
+          <p style="color:var(--text2);line-height:1.75;margin-bottom:1.5rem;">Media queries allow CSS to adapt to different screen sizes, orientations, and device capabilities — the foundation of responsive web design.</p>
+          <div class="code-block mb-3">
+<span class="c-c">/* Mobile first — default styles */</span><br>
+<span class="c-s">.container</span> { <span class="c-k">padding</span>: <span class="c-v">1rem</span>; }<br>
+<span class="c-s">.hero-title</span> { <span class="c-k">font-size</span>: <span class="c-v">2rem</span>; }<br><br>
+<span class="c-c">/* Tablet (≥ 768px) */</span><br>
+<span class="c-k">@media</span> (<span class="c-s">min-width</span>: <span class="c-v">768px</span>) {<br>
+&nbsp;&nbsp;<span class="c-s">.hero-title</span> { <span class="c-k">font-size</span>: <span class="c-v">3rem</span>; }<br>
+}<br><br>
+<span class="c-c">/* Desktop (≥ 1024px) */</span><br>
+<span class="c-k">@media</span> (<span class="c-s">min-width</span>: <span class="c-v">1024px</span>) {<br>
+&nbsp;&nbsp;<span class="c-s">.hero-title</span> { <span class="c-k">font-size</span>: <span class="c-v">4.5rem</span>; }<br>
+&nbsp;&nbsp;<span class="c-s">.container</span> { <span class="c-k">max-width</span>: <span class="c-v">1200px</span>; }<br>
+}
+          </div>
+          <div class="d-flex gap-3 flex-wrap justify-content-center">
+            <div style="text-align:center">
+              <div style="width:60px;height:96px;background:var(--surface2);border:2px solid var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 6px">📱</div>
+              <div style="font-size:.68rem;color:var(--text3);">Mobile<br>&lt;576px</div>
+            </div>
+            <div style="text-align:center">
+              <div style="width:90px;height:96px;background:var(--surface2);border:2px solid var(--amber);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 6px">📟</div>
+              <div style="font-size:.68rem;color:var(--text3);">Tablet<br>≥768px</div>
+            </div>
+            <div style="text-align:center">
+              <div style="width:150px;height:96px;background:var(--surface2);border:2px solid var(--rose);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 6px">💻</div>
+              <div style="font-size:.68rem;color:var(--text3);">Desktop<br>≥1024px</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CSS SPECIFICITY -->
+  <section>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 reveal">
+          <span class="eyebrow">Cascade & Specificity</span>
+          <h2 class="section-title">How CSS Decides Which Style Wins</h2>
+          <div class="divider"></div>
+          <p style="color:var(--text2);line-height:1.75;margin-bottom:2rem;">The "cascading" in CSS refers to the order rules are applied. Specificity determines which rule wins when multiple rules target the same element.</p>
+          <div class="row g-3">
+            <div class="col-6 col-md-3">
+              <div style="background:rgba(255,92,141,.1);border:1px solid rgba(255,92,141,.3);border-radius:var(--radius);padding:1rem;text-align:center;">
+                <div style="font-size:1.6rem;font-weight:800;color:var(--rose);margin-bottom:.3rem;">1000</div>
+                <div style="font-size:.72rem;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:1px;">Inline Style</div>
+                <div style="font-size:.7rem;color:var(--text3);margin-top:.4rem;"><code>style="..."</code></div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div style="background:rgba(255,171,64,.1);border:1px solid rgba(255,171,64,.3);border-radius:var(--radius);padding:1rem;text-align:center;">
+                <div style="font-size:1.6rem;font-weight:800;color:var(--amber);margin-bottom:.3rem;">100</div>
+                <div style="font-size:.72rem;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:1px;">ID Selector</div>
+                <div style="font-size:.7rem;color:var(--text3);margin-top:.4rem;"><code>#id {}</code></div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div style="background:var(--accent-dim);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center;">
+                <div style="font-size:1.6rem;font-weight:800;color:var(--accent);margin-bottom:.3rem;">10</div>
+                <div style="font-size:.72rem;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:1px;">Class Selector</div>
+                <div style="font-size:.7rem;color:var(--text3);margin-top:.4rem;"><code>.class {}</code></div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div style="background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius);padding:1rem;text-align:center;">
+                <div style="font-size:1.6rem;font-weight:800;color:var(--text2);margin-bottom:.3rem;">1</div>
+                <div style="font-size:.72rem;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:1px;">Element</div>
+                <div style="font-size:.7rem;color:var(--text3);margin-top:.4rem;"><code>p {}</code></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE NAV -->
+  <div style="border-top:1px solid var(--border2);padding:2rem 0;background:var(--bg2);">
+    <div class="container d-flex justify-content-between flex-wrap gap-3">
+      <a href="html.html" class="btn-outline-custom"><i class="bi bi-arrow-left"></i> HTML</a>
+      <a href="bootstrap.html" class="btn-primary-custom">Bootstrap Section <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4 align-items-start justify-content-between">
+      <div class="col-lg-4">
+        <div class="footer-brand">Rajesh Karki</div>
+        <p class="text-small text-gray max-w-sm mt-xs">CET138 Full Stack Development ePortfolio.</p>
+        <div class="footer-socials mt-3">
+          <a href="https://github.com/rajeshkarki9" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+          <a href="https://www.linkedin.com/in/rajesh-karki-478a9b274/" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="https://karkirajesh.com.np/" target="_blank" title="Website"><i class="bi bi-globe"></i></a>
+          <a href="mailto:ctit25e.rjs@ismt.edu.np" title="Email"><i class="bi bi-envelope"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <h6 style="font-family:var(--font-head);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;">Navigation</h6>
+        <div class="footer-nav-links d-flex flex-column gap-2">
+          <a href="index.html">Home</a><a href="about.html">Full Stack Dev</a><a href="html.html">HTML</a>
+          <a href="css.html">CSS</a><a href="bootstrap.html">Bootstrap</a><a href="javascript.html">JavaScript</a><a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <h6 style="font-family:var(--font-head);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;">Tech Stack</h6>
+        <div class="d-flex flex-wrap gap-2"><span class="chip">HTML5</span><span class="chip-amber">CSS3</span><span class="chip">Bootstrap 5</span><span class="chip-amber">JavaScript</span></div>
+      </div>
+    </div>
+    <div class="footer-copy d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span>© 2024 Rajesh Karki · CET138 ePortfolio</span>
+      <span>Built with HTML, CSS, Bootstrap &amp; JS</span>
+    </div>
+  </div>
+</footer>
+
+<button id="backTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+<div id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

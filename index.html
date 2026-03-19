@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rajesh Karki</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet"/>
+  <style>
+    /* ── HOME-SPECIFIC ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: var(--nav-h);
+      position: relative; overflow: hidden;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--accent-dim); border: 1px solid var(--border);
+      border-radius: 50px; padding: .38rem 1rem;
+      font-size: .73rem; font-weight: 700; color: var(--accent);
+      letter-spacing: 2.5px; text-transform: uppercase;
+      margin-bottom: 1.75rem;
+      animation: fade-up .5s .1s both;
+    }
+    .hero-h1 {
+      font-size: clamp(2.6rem,5.5vw,5rem);
+      font-weight: 800; line-height: 1.05;
+      margin-bottom: 1.5rem;
+      animation: fade-up .5s .25s both;
+    }
+    .hero-desc {
+      font-size: 1.05rem; line-height: 1.8;
+      color: var(--text2); max-width: 500px;
+      margin-bottom: 2.5rem;
+      animation: fade-up .5s .4s both;
+    }
+    .hero-cta { animation: fade-up .5s .55s both; }
+    .hero-right { animation: fade-in .8s .7s both; }
+
+    .hero-code {
+      background: var(--bg2); border: 1px solid var(--border2);
+      border-radius: var(--radius); padding: 1.5rem;
+      font-family: 'Courier New', monospace; font-size: .82rem;
+      line-height: 1.85; max-width: 420px; margin: auto;
+    }
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--emerald); animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 0 rgba(0,230,118,.4)} 50%{box-shadow:0 0 0 8px rgba(0,230,118,0)} }
+
+    .nav-card {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: var(--radius); padding: 1.75rem;
+      transition: var(--transition); text-decoration: none;
+      display: block; height: 100%;
+    }
+    .nav-card:hover {
+      border-color: var(--border); transform: translateY(-6px);
+      box-shadow: var(--shadow-lg); background: var(--surface2);
+    }
+    .nav-card-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1rem;
+    }
+    .nav-card-title {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 1rem; color: var(--text); margin-bottom: .4rem;
+    }
+    .nav-card-desc { font-size: .83rem; color: var(--text2); line-height: 1.6; }
+    .nav-card-arrow {
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .78rem; font-weight: 700; margin-top: 1.1rem;
+      transition: gap .2s;
+    }
+    .nav-card:hover .nav-card-arrow { gap: .7rem; }
+
+    @keyframes fade-up { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+    @keyframes fade-in  { from{opacity:0} to{opacity:1} }
+
+    .stat-box {
+      text-align: center; padding: 1.5rem;
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: var(--radius);
+    }
+    .stat-num {
+      font-family: var(--font-head); font-size: 2.4rem;
+      font-weight: 800; color: var(--accent); line-height: 1;
+      margin-bottom: .3rem;
+    }
+    .stat-label { font-size: .8rem; color: var(--text3); text-transform: uppercase; letter-spacing: 1.5px; }
+  </style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- ── NAVBAR ──────────────────────────────────────────────────────── -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand nav-brand" href="index.html">Rajesh Karki</a>
+    <div class="d-flex align-items-center gap-2 order-lg-last">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme"><i class="bi bi-sun-fill"></i></button>
+      <button class="navbar-toggler ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house me-1"></i>Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-layers me-1"></i>Full Stack</a></li>
+        <li class="nav-item"><a class="nav-link" href="html.html"><i class="bi bi-filetype-html me-1"></i>HTML</a></li>
+        <li class="nav-item"><a class="nav-link" href="css.html"><i class="bi bi-filetype-css me-1"></i>CSS</a></li>
+        <li class="nav-item"><a class="nav-link" href="bootstrap.html"><i class="bi bi-bootstrap me-1"></i>Bootstrap</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript.html"><i class="bi bi-filetype-js me-1"></i>JavaScript</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="hero-eyebrow">
+          <div class="status-dot"></div>
+          Available for junior positions
+        </div>
+        <h1 class="hero-h1">
+          Building the<br>
+          <span class="glow" id="typedText">Frontend Magic</span><span style="display:inline-block;width:2px;height:.85em;background:var(--accent);margin-left:3px;vertical-align:text-bottom;animation:blink .7s step-end infinite;"></span><br>
+          of the Web
+        </h1>
+        <p class="hero-desc">
+          Welcome to my CET138 Full Stack Development ePortfolio. Explore interactive demonstrations
+          of HTML, CSS, Bootstrap & JavaScript the building blocks of the modern web.
+        </p>
+        <div class="hero-cta d-flex flex-wrap gap-3">
+          <a href="about.html" class="btn-primary-custom"><i class="bi bi-rocket-takeoff"></i> Explore Portfolio</a>
+          <a href="contact.html" class="btn-outline-custom"><i class="bi bi-envelope"></i> Get in Touch</a>
+        </div>
+      </div>
+      <div class="col-lg-6 hero-right">
+        <div class="hero-code">
+          <div class="code-bar">
+            <span class="c-dot" style="background:#ff5f57"></span>
+            <span class="c-dot" style="background:#febc2e"></span>
+            <span class="c-dot" style="background:#28c840"></span>
+            <span class="c-p ms-2" style="font-size:.72rem;">portfolio.js</span>
+          </div>
+<span class="c-k">const</span> <span class="c-n">developer</span> = {<br>
+&nbsp;&nbsp;<span class="c-s">name</span>: <span class="c-v">"Rajesh Karki"</span>,<br>
+&nbsp;&nbsp;<span class="c-s">location</span>: <span class="c-v">"Bharatpur -10, Chitwan, Nepal"</span>,<br>
+&nbsp;&nbsp;<span class="c-s">college</span>: <span class="c-v">"ISMT Chitwan"</span>,<br>
+&nbsp;&nbsp;<span class="c-s">university</span>: <span class="c-v">"University of Sunderland"</span>,<br>
+&nbsp;&nbsp;<span class="c-s">course</span>: <span class="c-v">"CET138 Full Stack Dev"</span>,<br>
+&nbsp;&nbsp;<span class="c-s">skills</span>: [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-v">"HTML5"</span>, <span class="c-v">"CSS3"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-v">"Bootstrap 5"</span>, <span class="c-v">"JavaScript"</span><br>
+&nbsp;&nbsp;],<br>
+&nbsp;&nbsp;<span class="c-n">greet</span>: <span class="c-k">function</span>() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">return</span> <span class="c-v">"Hello! I'm Rajesh Karki from Nepal 🇳🇵"</span>;<br>
+&nbsp;&nbsp;}<br>
+};
+        </div>
+        <div class="d-flex justify-content-center flex-wrap gap-2 mt-3">
+          <span class="chip"><i class="bi bi-filetype-html me-1"></i>HTML5</span>
+          <span class="chip-amber"><i class="bi bi-filetype-css me-1"></i>CSS3</span>
+          <span class="chip"><i class="bi bi-bootstrap me-1"></i>Bootstrap 5</span>
+          <span class="chip-amber"><i class="bi bi-filetype-js me-1"></i>JavaScript</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ────────────────────────────────────────────────────────── -->
+<section style="padding:50px 0; border-top:1px solid var(--border2); border-bottom:1px solid var(--border2);">
+  <div class="container">
+    <div class="row g-3">
+      <div class="col-6 col-lg-3 reveal">
+        <div class="stat-box"><div class="stat-num">5</div><div class="stat-label">Topics Covered</div></div>
+      </div>
+      <div class="col-6 col-lg-3 reveal reveal-d1">
+        <div class="stat-box"><div class="stat-num" style="color:var(--amber)">7</div><div class="stat-label">Portfolio Pages</div></div>
+      </div>
+      <div class="col-6 col-lg-3 reveal reveal-d2">
+        <div class="stat-box"><div class="stat-num" style="color:var(--rose)">12+</div><div class="stat-label">Live Demos</div></div>
+      </div>
+      <div class="col-6 col-lg-3 reveal reveal-d3">
+        <div class="stat-box"><div class="stat-num" style="color:var(--emerald)">100%</div><div class="stat-label">Frontend Only</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── QUICK NAV CARDS ─────────────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-6 text-center reveal">
+        <span class="eyebrow">Explore the Portfolio</span>
+        <h2 class="section-title">Everything in One Place</h2>
+        <div class="divider centered"></div>
+        <p class="section-lead centered">Each section demonstrates a core web development skill with live interactive examples and clear explanations.</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Full Stack -->
+      <div class="col-sm-6 col-lg-4 reveal reveal-d1">
+        <a href="about.html" class="nav-card">
+          <div class="nav-card-icon" style="background:var(--accent-dim);color:var(--accent)"><i class="bi bi-layers-fill"></i></div>
+          <div class="nav-card-title">Full Stack Development</div>
+          <div class="nav-card-desc">Understand what full stack means frontend, backend, and how they communicate via APIs.</div>
+          <div class="nav-card-arrow" style="color:var(--accent)">Explore <i class="bi bi-arrow-right"></i></div>
+        </a>
+      </div>
+      <!-- HTML -->
+      <div class="col-sm-6 col-lg-4 reveal reveal-d2">
+        <a href="html.html" class="nav-card">
+          <div class="nav-card-icon" style="background:rgba(255,171,64,.12);color:var(--amber)"><i class="bi bi-filetype-html"></i></div>
+          <div class="nav-card-title">HTML</div>
+          <div class="nav-card-desc">Semantic structure, forms, tables, attributes and accessibility the skeleton of every webpage.</div>
+          <div class="nav-card-arrow" style="color:var(--amber)">Explore <i class="bi bi-arrow-right"></i></div>
+        </a>
+      </div>
+      <!-- CSS -->
+      <div class="col-sm-6 col-lg-4 reveal reveal-d3">
+        <a href="css.html" class="nav-card">
+          <div class="nav-card-icon" style="background:rgba(255,92,141,.12);color:var(--rose)"><i class="bi bi-filetype-css"></i></div>
+          <div class="nav-card-title">CSS</div>
+          <div class="nav-card-desc">Colours, flexbox, grid, animations, responsive design and the box model style the web.</div>
+          <div class="nav-card-arrow" style="color:var(--rose)">Explore <i class="bi bi-arrow-right"></i></div>
+        </a>
+      </div>
+      <!-- Bootstrap -->
+      <div class="col-sm-6 col-lg-4 reveal reveal-d1">
+        <a href="bootstrap.html" class="nav-card">
+          <div class="nav-card-icon" style="background:rgba(0,229,255,.12);color:var(--accent)"><i class="bi bi-bootstrap-fill"></i></div>
+          <div class="nav-card-title">Bootstrap 5</div>
+          <div class="nav-card-desc">Grid system, components, utilities, modals and the power of the world's most popular CSS framework.</div>
+          <div class="nav-card-arrow" style="color:var(--accent)">Explore <i class="bi bi-arrow-right"></i></div>
+        </a>
+      </div>
+      <!-- JavaScript -->
+      <div class="col-sm-6 col-lg-4 reveal reveal-d2">
+        <a href="javascript.html" class="nav-card">
+          <div class="nav-card-icon" style="background:rgba(255,171,64,.12);color:var(--amber)"><i class="bi bi-filetype-js"></i></div>
+          <div class="nav-card-title">JavaScript</div>
+          <div class="nav-card-desc">DOM manipulation, event listeners, form validation, array methods bringing pages to life.</div>
+          <div class="nav-card-arrow" style="color:var(--amber)">Explore <i class="bi bi-arrow-right"></i></div>
+        </a>
+      </div>
+      <!-- Contact -->
+      <div class="col-sm-6 col-lg-4 reveal reveal-d3">
+        <a href="contact.html" class="nav-card">
+          <div class="nav-card-icon" style="background:rgba(0,230,118,.1);color:var(--emerald)"><i class="bi bi-envelope-fill"></i></div>
+          <div class="nav-card-title">Contact</div>
+          <div class="nav-card-desc">Get in touch! A validated contact form with real-time JavaScript feedback and a polished UI.</div>
+          <div class="nav-card-arrow" style="color:var(--emerald)">Get in Touch <i class="bi bi-arrow-right"></i></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT PREVIEW ───────────────────────────────────────────────── -->
+<section style="background:var(--bg2); border-top:1px solid var(--border2);">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 reveal">
+        <span class="eyebrow">About This Portfolio</span>
+        <h2 class="section-title">Built to Demonstrate Real Skills</h2>
+        <div class="divider"></div>
+        <p style="color:var(--text2);line-height:1.8;margin-bottom:1.5rem;">This ePortfolio was created for the CET138 Full Stack Development module. Each section contains thorough explanations and interactive demonstrations of core web development technologies.</p>
+        <div class="d-flex flex-column gap-2">
+          <div class="d-flex align-items-center gap-2" style="font-size:.9rem;"><i class="bi bi-check-circle-fill" style="color:var(--emerald)"></i> All demos are live and interactive</div>
+          <div class="d-flex align-items-center gap-2" style="font-size:.9rem;"><i class="bi bi-check-circle-fill" style="color:var(--emerald)"></i> Pure HTML, CSS, Bootstrap & JS no backend</div>
+          <div class="d-flex align-items-center gap-2" style="font-size:.9rem;"><i class="bi bi-check-circle-fill" style="color:var(--emerald)"></i> Fully responsive on all screen sizes</div>
+          <div class="d-flex align-items-center gap-2" style="font-size:.9rem;"><i class="bi bi-check-circle-fill" style="color:var(--emerald)"></i> Dark / Light mode toggle</div>
+        </div>
+        <a href="about.html" class="btn-primary-custom mt-4">Learn About Full Stack Dev <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="col-lg-7 reveal reveal-d2">
+        <div class="row g-3">
+          <div class="col-6">
+            <div class="glass-card card-inner">
+              <i class="bi bi-code-slash" style="font-size:1.6rem;color:var(--accent);margin-bottom:.75rem;display:block;"></i>
+              <h6 style="font-family:var(--font-head);margin-bottom:.4rem;">Clean Code</h6>
+              <p style="font-size:.82rem;color:var(--text2);margin:0">Well-structured, readable, and documented code examples throughout.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="glass-card card-inner">
+              <i class="bi bi-phone" style="font-size:1.6rem;color:var(--amber);margin-bottom:.75rem;display:block;"></i>
+              <h6 style="font-family:var(--font-head);margin-bottom:.4rem;">Mobile First</h6>
+              <p style="font-size:.82rem;color:var(--text2);margin:0">Responsive design that works beautifully on any device size.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="glass-card card-inner">
+              <i class="bi bi-lightning-charge-fill" style="font-size:1.6rem;color:var(--rose);margin-bottom:.75rem;display:block;"></i>
+              <h6 style="font-family:var(--font-head);margin-bottom:.4rem;">Interactive</h6>
+              <p style="font-size:.82rem;color:var(--text2);margin:0">Live demos you can interact with to understand each concept.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="glass-card card-inner">
+              <i class="bi bi-palette2" style="font-size:1.6rem;color:var(--emerald);margin-bottom:.75rem;display:block;"></i>
+              <h6 style="font-family:var(--font-head);margin-bottom:.4rem;">Modern Design</h6>
+              <p style="font-size:.82rem;color:var(--text2);margin:0">Professional UI/UX with animations and a consistent design system.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="row g-4 align-items-start justify-content-between">
+      <div class="col-lg-4">
+        <div class="footer-brand">Rajesh Karki</div>
+        <p class="text-small text-gray max-w-sm mt-xs">CET138 Full Stack Development ePortfolio.</p>
+        <div class="footer-socials mt-3">
+          <a href="https://github.com/rajeshkarki9" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+          <a href="https://www.linkedin.com/in/rajesh-karki-478a9b274/" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="https://karkirajesh.com.np/" target="_blank" title="Website"><i class="bi bi-globe"></i></a>
+          <a href="mailto:ctit25e.rjs@ismt.edu.np" title="Email"><i class="bi bi-envelope"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <h6 style="font-family:var(--font-head);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;">Navigation</h6>
+        <div class="footer-nav-links d-flex flex-column gap-2">
+          <a href="index.html">Home</a><a href="about.html">Full Stack Dev</a><a href="html.html">HTML</a>
+          <a href="css.html">CSS</a><a href="bootstrap.html">Bootstrap</a><a href="javascript.html">JavaScript</a><a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <h6 style="font-family:var(--font-head);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;">Tech Stack</h6>
+        <div class="d-flex flex-wrap gap-2"><span class="chip">HTML5</span><span class="chip-amber">CSS3</span><span class="chip">Bootstrap 5</span><span class="chip-amber">JavaScript</span></div>
+      </div>
+    </div>
+    <div class="footer-copy d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span>© 2024 Rajesh Karki · CET138 ePortfolio</span>
+      <span>Built with HTML, CSS, Bootstrap &amp; JS</span>
+    </div>
+  </div>
+</footer>
+
+<button id="backTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+<div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+<style>@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}</style>
+</body>
+</html>

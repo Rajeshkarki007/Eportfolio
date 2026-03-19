@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rajesh Karki</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet"/>
+  <style>
+    .stack-card {
+      background: #ffffff; border: 1px solid #e5e7eb;
+      border-radius: var(--radius); padding: 2rem;
+      transition: var(--transition); height: 100%;
+    }
+    .stack-card:hover { border-color: #d1d5db; box-shadow: 0 12px 24px rgba(0,0,0,0.12); transform: translateY(-4px); }
+    .stack-card-icon { font-size: 2.6rem; margin-bottom: 1.1rem; display: block; }
+    .tech-pill {
+      display: inline-block; font-size: .7rem; font-weight: 600;
+      padding: .25rem .7rem; border-radius: 50px; margin: .2rem;
+    }
+    .api-flow {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; flex-wrap: wrap;
+    }
+    .api-box {
+      background: #ffffff; border: 1px solid #e5e7eb;
+      border-radius: var(--radius); padding: 1.2rem 1.5rem;
+      text-align: center; min-width: 120px;
+    }
+    .api-arrow {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0 .5rem; color: #6b7280; font-size: .65rem;
+    }
+    .timeline-item {
+      display: flex; gap: 1.25rem; padding-bottom: 2rem; position: relative;
+    }
+    .timeline-item:not(:last-child)::after {
+      content: ''; position: absolute; left: 19px; top: 42px;
+      width: 2px; bottom: 0; background: #e5e7eb;
+    }
+    .timeline-dot {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; z-index: 1;
+    }
+    .timeline-content { padding-top: .5rem; }
+  </style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand nav-brand" href="index.html">Rajesh Karki</a>
+    <div class="d-flex align-items-center gap-2 order-lg-last">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme"><i class="bi bi-sun-fill"></i></button>
+      <button class="navbar-toggler ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house me-1"></i>Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-layers me-1"></i>Full Stack</a></li>
+        <li class="nav-item"><a class="nav-link" href="html.html"><i class="bi bi-filetype-html me-1"></i>HTML</a></li>
+        <li class="nav-item"><a class="nav-link" href="css.html"><i class="bi bi-filetype-css me-1"></i>CSS</a></li>
+        <li class="nav-item"><a class="nav-link" href="bootstrap.html"><i class="bi bi-bootstrap me-1"></i>Bootstrap</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript.html"><i class="bi bi-filetype-js me-1"></i>JavaScript</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <i class="page-hero-icon">🌐</i>
+      <h1 class="section-title">What is <span class="highlight">Full Stack</span><br>Development?</h1>
+      <div class="divider"></div>
+      <p class="section-lead max-w-md">Full stack development is the ability to work on both the frontend and the backend of a web application mastering the complete technology "stack".</p>
+    </div>
+  </div>
+
+  <!-- FRONTEND VS BACKEND -->
+  <section>
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-7 text-center reveal">
+          <span class="eyebrow">The Two Sides</span>
+          <h2 class="section-title">Frontend vs Backend</h2>
+          <div class="divider centered"></div>
+        </div>
+      </div>
+      <div class="row g-4">
+        <!-- Frontend -->
+        <div class="col-lg-5 reveal reveal-d1">
+          <div class="stack-card" style="border-top:3px solid var(--accent);">
+            <span class="stack-card-icon">🎨</span>
+            <h3 style="font-size:1.4rem;font-weight:800;color:var(--accent);margin-bottom:.75rem;">Frontend</h3>
+            <p style="color:var(--text2);font-size:.9rem;line-height:1.75;margin-bottom:1.25rem;">The frontend is everything a user sees and interacts with directly in their browser. It is responsible for the layout, design, animations, and user experience of a website.</p>
+            <h6 style="font-family:var(--font-head);font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:.75rem;">Technologies</h6>
+            <div class="mb-3">
+              <span class="tech-pill" style="background:rgba(255,99,71,.15);color:#ff6347;border:1px solid rgba(255,99,71,.3)">HTML5</span>
+              <span class="tech-pill" style="background:rgba(70,130,180,.15);color:#6bb5ff;border:1px solid rgba(70,130,180,.3)">CSS3</span>
+              <span class="tech-pill" style="background:rgba(255,215,0,.15);color:#ffd700;border:1px solid rgba(255,215,0,.3)">JavaScript</span>
+              <span class="tech-pill" style="background:rgba(121,82,179,.15);color:#a78bfa;border:1px solid rgba(121,82,179,.3)">Bootstrap</span>
+              <span class="tech-pill" style="background:rgba(0,200,150,.15);color:#00c89a;border:1px solid rgba(0,200,150,.3)">React</span>
+              <span class="tech-pill" style="background:rgba(65,184,131,.15);color:#41b883;border:1px solid rgba(65,184,131,.3)">Vue.js</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 p-3 rounded" style="background:var(--accent-dim);border:1px solid var(--border);">
+              <i class="bi bi-eye-fill" style="color:var(--accent);font-size:1.1rem;"></i>
+              <div style="font-size:.84rem;"><span style="color:var(--accent)">Runs in the browser.</span> <span style="color:var(--text2);">The user downloads and executes this code on their own device.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="col-lg-2 d-flex align-items-center justify-content-center reveal reveal-d2">
+          <div class="api-flow flex-column gap-2">
+            <div style="font-size:.7rem;color:var(--text3);text-align:center;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;">HTTP / API</div>
+            <div style="font-size:1.5rem;color:var(--accent)"><i class="bi bi-arrow-down-circle-fill"></i></div>
+            <div style="width:2px;height:40px;background:linear-gradient(var(--accent),var(--amber));margin:0 auto;border-radius:2px;"></div>
+            <div style="font-size:1.5rem;color:var(--amber)"><i class="bi bi-arrow-up-circle-fill"></i></div>
+            <div style="font-size:.7rem;color:var(--text3);text-align:center;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;">JSON / Data</div>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="col-lg-5 reveal reveal-d3">
+          <div class="stack-card" style="border-top:3px solid var(--amber);">
+            <span class="stack-card-icon">⚙️</span>
+            <h3 style="font-size:1.4rem;font-weight:800;color:var(--amber);margin-bottom:.75rem;">Backend</h3>
+            <p style="color:var(--text2);font-size:.9rem;line-height:1.75;margin-bottom:1.25rem;">The backend is the server-side of a web application. It handles data storage, business logic, user authentication, and exposes APIs that the frontend consumes.</p>
+            <h6 style="font-family:var(--font-head);font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:.75rem;">Technologies</h6>
+            <div class="mb-3">
+              <span class="tech-pill" style="background:rgba(136,186,78,.15);color:#88ba4e;border:1px solid rgba(136,186,78,.3)">PHP</span>
+              <span class="tech-pill" style="background:rgba(68,168,107,.15);color:#44a86b;border:1px solid rgba(68,168,107,.3)">Node.js</span>
+              <span class="tech-pill" style="background:rgba(59,130,246,.15);color:#60a5fa;border:1px solid rgba(59,130,246,.3)">Python</span>
+              <span class="tech-pill" style="background:rgba(0,117,143,.15);color:#00c2dd;border:1px solid rgba(0,117,143,.3)">MySQL</span>
+              <span class="tech-pill" style="background:rgba(255,179,0,.15);color:#ffb300;border:1px solid rgba(255,179,0,.3)">MongoDB</span>
+              <span class="tech-pill" style="background:rgba(255,100,100,.15);color:#ff6464;border:1px solid rgba(255,100,100,.3)">REST API</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 p-3 rounded" style="background:var(--amber-dim);border:1px solid rgba(255,171,64,.25);">
+              <i class="bi bi-server" style="color:var(--amber);font-size:1.1rem;"></i>
+              <div style="font-size:.84rem;"><span style="color:var(--amber)">Runs on the server.</span> <span style="color:var(--text2);">Users never see this code it stays private and secure on the server.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- API Flow Diagram -->
+      <div class="mt-5 reveal">
+        <h4 class="text-center mb-4" style="font-family:var(--font-head);font-size:1.1rem;color:var(--text2);">How Frontend & Backend Communicate</h4>
+        <div class="api-flow flex-wrap gap-3 justify-content-center">
+          <div class="api-box" style="border-top:2px solid var(--accent);">
+            <i class="bi bi-person-fill" style="font-size:1.5rem;color:var(--accent);display:block;margin-bottom:.4rem;"></i>
+            <strong style="font-size:.85rem;color:var(--accent);">User</strong>
+            <div style="font-size:.72rem;color:var(--text3);">Browser / App</div>
+          </div>
+          <div class="api-arrow">
+            <div style="font-size:.62rem;font-weight:700;color:var(--text3)">HTTP Request</div>
+            <div style="color:var(--accent);font-size:1.2rem;">→</div>
+          </div>
+          <div class="api-box" style="border-top:2px solid #7952b3;">
+            <i class="bi bi-code-slash" style="font-size:1.5rem;color:#a78bfa;display:block;margin-bottom:.4rem;"></i>
+            <strong style="font-size:.85rem;color:#a78bfa;">Frontend</strong>
+            <div style="font-size:.72rem;color:var(--text3);">HTML/CSS/JS</div>
+          </div>
+          <div class="api-arrow">
+            <div style="font-size:.62rem;font-weight:700;color:var(--text3)">API Call</div>
+            <div style="color:var(--amber);font-size:1.2rem;">→</div>
+          </div>
+          <div class="api-box" style="border-top:2px solid var(--amber);">
+            <i class="bi bi-server" style="font-size:1.5rem;color:var(--amber);display:block;margin-bottom:.4rem;"></i>
+            <strong style="font-size:.85rem;color:var(--amber);">Backend</strong>
+            <div style="font-size:.72rem;color:var(--text3);">PHP / Node.js</div>
+          </div>
+          <div class="api-arrow">
+            <div style="font-size:.62rem;font-weight:700;color:var(--text3)">Query</div>
+            <div style="color:var(--rose);font-size:1.2rem;">→</div>
+          </div>
+          <div class="api-box" style="border-top:2px solid var(--rose);">
+            <i class="bi bi-database-fill" style="font-size:1.5rem;color:var(--rose);display:block;margin-bottom:.4rem;"></i>
+            <strong style="font-size:.85rem;color:var(--rose);">Database</strong>
+            <div style="font-size:.72rem;color:var(--text3);">MySQL / MongoDB</div>
+          </div>
+        </div>
+        <div class="text-center mt-3" style="font-size:.8rem;color:var(--text3);">← JSON response flows back through the chain to the user</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHP NOTE & COURSE SCOPE -->
+  <section style="background:var(--bg2);border-top:1px solid var(--border2);">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6 reveal">
+          <span class="eyebrow">Course Scope</span>
+          <h2 class="section-title">Backend in This Module</h2>
+          <div class="divider"></div>
+          <p style="color:var(--text2);font-size:.95rem;line-height:1.8;margin-bottom:1.25rem;">
+            In the CET138 module, the backend technology studied is <span style="color:var(--amber)">PHP</span>. PHP is a widely-used server-side scripting language that powers platforms like WordPress, Facebook (originally), and many web applications.
+          </p>
+          <div class="d-flex align-items-start gap-3 p-3 mb-3 rounded" style="background:rgba(255,171,64,.08);border:1px solid rgba(255,171,64,.2);">
+            <i class="bi bi-info-circle-fill" style="color:var(--amber);font-size:1.2rem;flex-shrink:0;margin-top:.15rem;"></i>
+            <p style="font-size:.88rem;color:var(--text2);margin:0;line-height:1.7;"><span style="color:var(--amber);">Note:</span> While PHP is studied as part of this module, this ePortfolio is a purely frontend demonstration. The backend (PHP, databases) is understood conceptually but not implemented here per the assignment brief.</p>
+          </div>
+        </div>
+        <div class="col-lg-6 reveal reveal-d2">
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="glass-card card-inner h-100">
+                <i class="bi bi-check2-circle" style="color:var(--emerald);font-size:1.4rem;margin-bottom:.6rem;display:block;"></i>
+                <h6 style="font-family:var(--font-head);margin-bottom:.35rem;">What We Implement</h6>
+                <ul style="color:var(--text2);font-size:.82rem;padding-left:1rem;line-height:1.9;margin:0;">
+                  <li>HTML structure</li>
+                  <li>CSS styling</li>
+                  <li>Bootstrap layout</li>
+                  <li>JavaScript logic</li>
+                  <li>Form validation</li>
+                  <li>DOM manipulation</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="glass-card card-inner h-100">
+                <i class="bi bi-book" style="color:var(--amber);font-size:1.4rem;margin-bottom:.6rem;display:block;"></i>
+                <h6 style="font-family:var(--font-head);margin-bottom:.35rem;">What We Study</h6>
+                <ul style="color:var(--text2);font-size:.82rem;padding-left:1rem;line-height:1.9;margin:0;">
+                  <li>PHP scripting</li>
+                  <li>MySQL databases</li>
+                  <li>Server-side logic</li>
+                  <li>API design</li>
+                  <li>Authentication</li>
+                  <li>CRUD operations</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY FULL STACK -->
+  <section>
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-6 text-center reveal">
+          <span class="eyebrow">Career Path</span>
+          <h2 class="section-title">Why Full Stack?</h2>
+          <div class="divider centered"></div>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3 reveal reveal-d1">
+          <div class="glass-card card-inner text-center h-100">
+            <div style="font-size:2.5rem;margin-bottom:1rem;">🔭</div>
+            <h5 style="font-family:var(--font-head);font-size:1rem;margin-bottom:.5rem;">Holistic View</h5>
+            <p style="color:var(--text2);font-size:.83rem;line-height:1.7;margin:0;">Understand how all layers of a web app connect — from the UI to the database and back.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 reveal reveal-d2">
+          <div class="glass-card card-inner text-center h-100">
+            <div style="font-size:2.5rem;margin-bottom:1rem;">💼</div>
+            <h5 style="font-family:var(--font-head);font-size:1rem;margin-bottom:.5rem;">In Demand</h5>
+            <p style="color:var(--text2);font-size:.83rem;line-height:1.7;margin:0;">Full stack developers are among the most sought-after roles in the tech industry globally.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 reveal reveal-d3">
+          <div class="glass-card card-inner text-center h-100">
+            <div style="font-size:2.5rem;margin-bottom:1rem;">🚀</div>
+            <h5 style="font-family:var(--font-head);font-size:1rem;margin-bottom:.5rem;">Build Anything</h5>
+            <p style="color:var(--text2);font-size:.83rem;line-height:1.7;margin:0;">With full stack skills you can take a project from idea to fully deployed product independently.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 reveal reveal-d4">
+          <div class="glass-card card-inner text-center h-100">
+            <div style="font-size:2.5rem;margin-bottom:1rem;">🤝</div>
+            <h5 style="font-family:var(--font-head);font-size:1rem;margin-bottom:.5rem;">Team Versatility</h5>
+            <p style="color:var(--text2);font-size:.83rem;line-height:1.7;margin:0;">Bridge the gap between design and engineering teams, making you invaluable in any organisation.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="row mt-5 g-4">
+        <div class="col-lg-6 reveal reveal-d1">
+          <div class="glass-card card-inner">
+            <h5 style="font-family:var(--font-head);color:var(--accent);margin-bottom:1.5rem;"><i class="bi bi-display me-2"></i>Frontend Skills</h5>
+            <div class="skill-bar"><div class="skill-bar-head"><span>HTML5 Semantic Markup</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
+            <div class="skill-bar"><div class="skill-bar-head"><span>CSS3 Layouts & Animations</span><span>83%</span></div><div class="skill-track"><div class="skill-fill" data-w="83"></div></div></div>
+            <div class="skill-bar"><div class="skill-bar-head"><span>Bootstrap 5 Responsive Design</span><span>80%</span></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
+            <div class="skill-bar"><div class="skill-bar-head"><span>JavaScript DOM & ES6+</span><span>75%</span></div><div class="skill-track"><div class="skill-fill" data-w="75"></div></div></div>
+          </div>
+        </div>
+        <div class="col-lg-6 reveal reveal-d2">
+          <div class="glass-card card-inner">
+            <h5 style="font-family:var(--font-head);color:var(--amber);margin-bottom:1.5rem;"><i class="bi bi-server me-2"></i>Backend & Tools</h5>
+            <div class="skill-bar"><div class="skill-bar-head"><span>PHP Server-Side Scripting</span><span>60%</span></div><div class="skill-track"><div class="skill-fill" data-w="60" style="background:linear-gradient(90deg,var(--amber),var(--rose))"></div></div></div>
+            <div class="skill-bar"><div class="skill-bar-head"><span>MySQL Database Queries</span><span>55%</span></div><div class="skill-track"><div class="skill-fill" data-w="55" style="background:linear-gradient(90deg,var(--amber),var(--rose))"></div></div></div>
+            <div class="skill-bar"><div class="skill-bar-head"><span>Git Version Control</span><span>72%</span></div><div class="skill-track"><div class="skill-fill" data-w="72" style="background:linear-gradient(90deg,var(--amber),var(--rose))"></div></div></div>
+            <div class="skill-bar"><div class="skill-bar-head"><span>REST API Design</span><span>60%</span></div><div class="skill-track"><div class="skill-fill" data-w="60" style="background:linear-gradient(90deg,var(--amber),var(--rose))"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE NAV -->
+  <div style="border-top:1px solid var(--border2);padding:2rem 0;background:var(--bg2);">
+    <div class="container d-flex justify-content-between flex-wrap gap-3">
+      <a href="index.html" class="btn-outline-custom"><i class="bi bi-arrow-left"></i> Home</a>
+      <a href="html.html" class="btn-primary-custom">HTML Section <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4 align-items-start justify-content-between">
+      <div class="col-lg-4">
+        <div class="footer-brand">Rajesh Karki</div>
+        <p class="text-small text-gray max-w-sm mt-xs">CET138 Full Stack Development ePortfolio.</p>
+        <div class="footer-socials mt-3">
+          <a href="https://github.com/rajeshkarki9" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+          <a href="https://www.linkedin.com/in/rajesh-karki-478a9b274/" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="https://karkirajesh.com.np/" target="_blank" title="Website"><i class="bi bi-globe"></i></a>
+          <a href="mailto:ctit25e.rjs@ismt.edu.np" title="Email"><i class="bi bi-envelope"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <h6 style="font-family:var(--font-head);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;">Navigation</h6>
+        <div class="footer-nav-links d-flex flex-column gap-2">
+          <a href="index.html">Home</a><a href="about.html">Full Stack Dev</a><a href="html.html">HTML</a>
+          <a href="css.html">CSS</a><a href="bootstrap.html">Bootstrap</a><a href="javascript.html">JavaScript</a><a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <h6 style="font-family:var(--font-head);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;">Tech Stack</h6>
+        <div class="d-flex flex-wrap gap-2"><span class="chip">HTML5</span><span class="chip-amber">CSS3</span><span class="chip">Bootstrap 5</span><span class="chip-amber">JavaScript</span></div>
+      </div>
+    </div>
+    <div class="footer-copy d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span>© 2024 Rajesh Karki · CET138 ePortfolio</span>
+      <span>Built with HTML, CSS, Bootstrap &amp; JS</span>
+    </div>
+  </div>
+</footer>
+
+<button id="backTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+<div id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

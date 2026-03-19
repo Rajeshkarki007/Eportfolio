@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rajesh Karki</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet"/>
+  <style>
+    .demo-panel {
+      background: #f9fafb; border: 1px solid #e5e7eb;
+      border-radius: var(--radius); padding: 1.75rem; height: 100%;
+    }
+    .bs-card {
+      background: #ffffff; border: 1px solid #e5e7eb;
+      border-radius: 12px; overflow: hidden; height: 100%;
+      transition: var(--transition);
+    }
+    .bs-card:hover { border-color: #d1d5db; transform: translateY(-4px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .bs-card-img { height: 120px; display:flex; align-items:center; justify-content:center; font-size:3rem; }
+    .bs-card-body { padding: 1.1rem; }
+    .util-pill {
+      display: inline-block; background: #f3f4f6; border: 1px solid #d1d5db;
+      border-radius: 6px; padding: .2rem .6rem; margin: .15rem;
+      font-family: 'Courier New', monospace; font-size: .72rem; color: #2563eb;
+    }
+    /* Bootstrap accordion override for demo */
+    .demo-accordion .accordion-item { background: #ffffff !important; }
+  </style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand nav-brand" href="index.html">Rajesh Karki</a>
+    <div class="d-flex align-items-center gap-2 order-lg-last">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme"><i class="bi bi-sun-fill"></i></button>
+      <button class="navbar-toggler ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house me-1"></i>Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-layers me-1"></i>Full Stack</a></li>
+        <li class="nav-item"><a class="nav-link" href="html.html"><i class="bi bi-filetype-html me-1"></i>HTML</a></li>
+        <li class="nav-item"><a class="nav-link" href="css.html"><i class="bi bi-filetype-css me-1"></i>CSS</a></li>
+        <li class="nav-item"><a class="nav-link" href="bootstrap.html"><i class="bi bi-bootstrap me-1"></i>Bootstrap</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript.html"><i class="bi bi-filetype-js me-1"></i>JavaScript</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <i class="page-hero-icon">🧩</i>
+      <h1 class="section-title"><span style="color:#a78bfa">Bootstrap 5</span><br>The CSS Framework</h1>
+      <div class="divider" style="background:linear-gradient(90deg,#7952b3,var(--accent))"></div>
+      <p class="section-lead max-w-md">Bootstrap is the world's most popular front-end framework. It provides a 12-column responsive grid, pre-built components, and hundreds of utility classes enabling rapid development of professional, mobile-first websites.</p>
+    </div>
+  </div>
+
+  <!-- GRID SYSTEM -->
+  <section>
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-7 text-center reveal">
+          <span class="eyebrow">Layout Foundation</span>
+          <h2 class="section-title">The 12-Column Grid System</h2>
+          <div class="divider centered" style="background:linear-gradient(90deg,#7952b3,var(--accent))"></div>
+          <p class="section-lead centered">Bootstrap's grid divides every row into 12 equal columns. Use responsive column classes to control layout at every breakpoint.</p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="demo-panel">
+          <div class="demo-label"><i class="bi bi-grid-3x3-gap"></i> Live Grid Examples</div>
+
+          <!-- col-12 -->
+          <div class="row g-2 mb-2">
+            <div class="col-12"><div class="grid-vis-col" style="background:linear-gradient(135deg,#7952b3,#a78bfa);">col-12 (12/12 full width)</div></div>
+          </div>
+          <!-- col-6 -->
+          <div class="row g-2 mb-2">
+            <div class="col-6"><div class="grid-vis-col v2">col-6 (6/12)</div></div>
+            <div class="col-6"><div class="grid-vis-col v2">col-6 (6/12)</div></div>
+          </div>
+          <!-- col-4 -->
+          <div class="row g-2 mb-2">
+            <div class="col-4"><div class="grid-vis-col v3">col-4</div></div>
+            <div class="col-4"><div class="grid-vis-col v3">col-4</div></div>
+            <div class="col-4"><div class="grid-vis-col v3">col-4</div></div>
+          </div>
+          <!-- col-3 -->
+          <div class="row g-2 mb-2">
+            <div class="col-3"><div class="grid-vis-col v4">col-3</div></div>
+            <div class="col-3"><div class="grid-vis-col v4">col-3</div></div>
+            <div class="col-3"><div class="grid-vis-col v4">col-3</div></div>
+            <div class="col-3"><div class="grid-vis-col v4">col-3</div></div>
+          </div>
+          <!-- Responsive -->
+          <div class="row g-2 mb-2">
+            <div class="col-12 col-md-8"><div class="grid-vis-col" style="background:linear-gradient(135deg,var(--accent),#0077aa);">col-12 col-md-8</div></div>
+            <div class="col-12 col-md-4"><div class="grid-vis-col v2">col-12 col-md-4</div></div>
+          </div>
+
+          <div class="code-block mt-3" style="font-size:.75rem;">
+<span class="c-s">&lt;div</span> <span class="c-k">class</span>=<span class="c-v">"row g-3"</span><span class="c-s">&gt;</span><br>
+&nbsp;&nbsp;<span class="c-s">&lt;div</span> <span class="c-k">class</span>=<span class="c-v">"col-12 col-md-6 col-lg-4"</span><span class="c-s">&gt;</span>Content<span class="c-s">&lt;/div&gt;</span><br>
+&nbsp;&nbsp;<span class="c-s">&lt;div</span> <span class="c-k">class</span>=<span class="c-v">"col-12 col-md-6 col-lg-4"</span><span class="c-s">&gt;</span>Content<span class="c-s">&lt;/div&gt;</span><br>
+<span class="c-s">&lt;/div&gt;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section style="background:var(--bg2);border-top:1px solid var(--border2);">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-6 text-center reveal">
+          <span class="eyebrow">Bootstrap Components</span>
+          <h2 class="section-title">Ready-Made UI Elements</h2>
+          <div class="divider centered" style="background:linear-gradient(90deg,#7952b3,var(--accent))"></div>
+        </div>
+      </div>
+      <div class="row g-4">
+
+        <!-- Buttons & Badges -->
+        <div class="col-lg-6 reveal reveal-d1">
+          <div class="demo-panel">
+            <div class="demo-label"><i class="bi bi-toggles"></i> Buttons, Badges & Alerts</div>
+            <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:.6rem;">Buttons</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <button class="btn btn-primary btn-sm">Primary</button>
+              <button class="btn btn-success btn-sm">Success</button>
+              <button class="btn btn-danger btn-sm">Danger</button>
+              <button class="btn btn-warning btn-sm text-dark">Warning</button>
+              <button class="btn btn-outline-info btn-sm">Outline</button>
+              <button class="btn btn-dark btn-sm">Dark</button>
+              <button class="btn btn-light btn-sm">Light</button>
+            </div>
+            <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:.6rem;">Badges</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <span class="badge bg-primary rounded-pill">New</span>
+              <span class="badge bg-success rounded-pill">Active</span>
+              <span class="badge bg-danger rounded-pill">Error</span>
+              <span class="badge bg-warning text-dark rounded-pill">Beta</span>
+              <span class="badge bg-info text-dark rounded-pill">Info</span>
+              <span class="badge bg-secondary rounded-pill">Draft</span>
+            </div>
+            <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:.6rem;">Alerts</p>
+            <div class="alert alert-success py-2 px-3 mb-2" style="font-size:.82rem;border-radius:8px;"><i class="bi bi-check-circle me-1"></i>Form submitted successfully!</div>
+            <div class="alert alert-warning py-2 px-3" style="font-size:.82rem;border-radius:8px;"><i class="bi bi-exclamation-triangle me-1"></i>Please complete all required fields.</div>
+          </div>
+        </div>
+
+        <!-- Progress & Cards -->
+        <div class="col-lg-6 reveal reveal-d2">
+          <div class="demo-panel">
+            <div class="demo-label"><i class="bi bi-card-text"></i> Cards & Progress</div>
+            <div class="card mb-3" style="background:var(--surface2);border:1px solid var(--border2);border-radius:12px;">
+              <div class="card-body">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <div class="rounded-circle d-flex align-items-center justify-content-center bg-primary" style="width:34px;height:34px;flex-shrink:0">
+                    <i class="bi bi-person-fill text-white" style="font-size:.85rem;"></i>
+                  </div>
+                  <div>
+                    <h6 class="mb-0" style="font-family:var(--font-head);font-size:.88rem;">Bootstrap Card</h6>
+                    <small class="text-muted" style="font-size:.72rem;">UI Component</small>
+                  </div>
+                  <span class="badge bg-success ms-auto">New</span>
+                </div>
+                <p class="card-text mb-3" style="font-size:.83rem;color:var(--text2);">Cards are flexible content containers. They support headers, footers, images, and body content.</p>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-primary btn-sm">Read More</button>
+                  <button class="btn btn-outline-secondary btn-sm">Share</button>
+                </div>
+              </div>
+            </div>
+            <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:.6rem;">Progress Bars</p>
+            <div class="progress mb-2" style="height:7px;border-radius:7px;background:var(--surface2)">
+              <div class="progress-bar" style="width:78%;background:linear-gradient(90deg,#7952b3,var(--accent))"></div>
+            </div>
+            <div class="progress mb-2" style="height:7px;border-radius:7px;background:var(--surface2)">
+              <div class="progress-bar bg-success" style="width:62%"></div>
+            </div>
+            <div class="progress" style="height:7px;border-radius:7px;background:var(--surface2)">
+              <div class="progress-bar bg-warning" style="width:45%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion -->
+        <div class="col-lg-6 reveal reveal-d3">
+          <div class="demo-panel">
+            <div class="demo-label"><i class="bi bi-chevron-expand"></i> Accordion Component</div>
+            <div class="accordion demo-accordion" id="bsAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#acc1">
+                    <i class="bi bi-question-circle me-2 text-primary"></i>What is Bootstrap?
+                  </button>
+                </h2>
+                <div id="acc1" class="accordion-collapse collapse show" data-bs-parent="#bsAccordion">
+                  <div class="accordion-body">Bootstrap is a free, open-source CSS framework directed at responsive, mobile-first front-end web development. It contains HTML, CSS and JavaScript-based design templates.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc2">
+                    <i class="bi bi-grid me-2 text-success"></i>How does the grid work?
+                  </button>
+                </h2>
+                <div id="acc2" class="accordion-collapse collapse" data-bs-parent="#bsAccordion">
+                  <div class="accordion-body">Bootstrap uses a 12-column flex-based grid. Wrap columns in a <code>.row</code>, and use classes like <code>col-md-6</code> to define responsive widths at different breakpoints.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc3">
+                    <i class="bi bi-tools me-2 text-warning"></i>What are utility classes?
+                  </button>
+                </h2>
+                <div id="acc3" class="accordion-collapse collapse" data-bs-parent="#bsAccordion">
+                  <div class="accordion-body">Utility classes are single-purpose CSS classes for common properties: <code>d-flex</code>, <code>p-3</code>, <code>text-center</code>, <code>fw-bold</code>, <code>rounded-pill</code> no custom CSS needed.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Trigger + Tooltips -->
+        <div class="col-lg-6 reveal reveal-d4">
+          <div class="demo-panel">
+            <div class="demo-label"><i class="bi bi-window"></i> Modals & Interactive Components</div>
+            <p style="color:var(--text2);font-size:.88rem;line-height:1.7;margin-bottom:1rem;">Bootstrap provides out-of-the-box JavaScript components modals, tooltips, dropdowns, toasts all triggered with data attributes, no custom JS required.</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                <i class="bi bi-window me-1"></i>Open Modal
+              </button>
+              <button class="btn btn-outline-info" data-bs-toggle="tooltip" title="Bootstrap Tooltip! ✨">
+                <i class="bi bi-info-circle me-1"></i>Hover Me
+              </button>
+              <button class="btn btn-outline-success" id="toastBtn">
+                <i class="bi bi-bell me-1"></i>Show Toast
+              </button>
+            </div>
+            <div class="code-block" style="font-size:.73rem;">
+<span class="c-c">&lt;!-- No JavaScript needed! --&gt;</span><br>
+<span class="c-s">&lt;button</span><br>
+&nbsp;&nbsp;<span class="c-k">data-bs-toggle</span>=<span class="c-v">"modal"</span><br>
+&nbsp;&nbsp;<span class="c-k">data-bs-target</span>=<span class="c-v">"#myModal"</span><span class="c-s">&gt;</span><br>
+&nbsp;&nbsp;Open Modal<br>
+<span class="c-s">&lt;/button&gt;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UTILITY CLASSES -->
+  <section>
+    <div class="container">
+      <div class="row justify-content-center mb-4">
+        <div class="col-lg-6 text-center reveal">
+          <span class="eyebrow">Bootstrap Utilities</span>
+          <h2 class="section-title">Utility Classes Reference</h2>
+          <div class="divider centered"></div>
+        </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6 col-lg-3 reveal reveal-d1">
+          <div class="glass-card card-inner">
+            <h6 style="font-family:var(--font-head);color:var(--accent);margin-bottom:.75rem;"><i class="bi bi-layout-three-columns me-1"></i>Flex Utilities</h6>
+            <div><span class="util-pill">d-flex</span><span class="util-pill">flex-column</span><span class="util-pill">justify-content-between</span><span class="util-pill">align-items-center</span><span class="util-pill">flex-wrap</span><span class="util-pill">gap-3</span></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 reveal reveal-d2">
+          <div class="glass-card card-inner">
+            <h6 style="font-family:var(--font-head);color:var(--amber);margin-bottom:.75rem;"><i class="bi bi-arrows-expand me-1"></i>Spacing</h6>
+            <div><span class="util-pill">p-3</span><span class="util-pill">px-4</span><span class="util-pill">py-2</span><span class="util-pill">m-0</span><span class="util-pill">mx-auto</span><span class="util-pill">mb-3</span><span class="util-pill">mt-5</span><span class="util-pill">gap-2</span></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 reveal reveal-d3">
+          <div class="glass-card card-inner">
+            <h6 style="font-family:var(--font-head);color:var(--rose);margin-bottom:.75rem;"><i class="bi bi-type me-1"></i>Typography</h6>
+            <div><span class="util-pill">text-center</span><span class="util-pill">fw-bold</span><span class="util-pill">fs-4</span><span class="util-pill">text-muted</span><span class="util-pill">lh-lg</span><span class="util-pill">text-uppercase</span></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 reveal reveal-d4">
+          <div class="glass-card card-inner">
+            <h6 style="font-family:var(--font-head);color:var(--emerald);margin-bottom:.75rem;"><i class="bi bi-palette me-1"></i>Visual</h6>
+            <div><span class="util-pill">rounded-pill</span><span class="util-pill">shadow-lg</span><span class="util-pill">border</span><span class="util-pill">bg-dark</span><span class="util-pill">opacity-50</span><span class="util-pill">overflow-hidden</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE NAV -->
+  <div style="border-top:1px solid var(--border2);padding:2rem 0;background:var(--bg2);">
+    <div class="container d-flex justify-content-between flex-wrap gap-3">
+      <a href="css.html" class="btn-outline-custom"><i class="bi bi-arrow-left"></i> CSS</a>
+      <a href="javascript.html" class="btn-primary-custom">JavaScript Section <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- BOOTSTRAP MODAL -->
+<div class="modal fade" id="demoModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);">
+      <div class="modal-header" style="border-bottom:1px solid var(--border2);">
+        <h5 class="modal-title" style="font-family:var(--font-head);color:#a78bfa;"><i class="bi bi-window-dock me-2"></i>Bootstrap Modal</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" style="color:var(--text2);font-size:.9rem;line-height:1.75;">
+        <p>This modal is triggered entirely with <code>data-bs-toggle</code> and <code>data-bs-target</code> attributes — zero custom JavaScript!</p>
+        <div class="code-block mt-2" style="font-size:.75rem;">
+<span class="c-s">&lt;button</span> <span class="c-k">data-bs-toggle</span>=<span class="c-v">"modal"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">data-bs-target</span>=<span class="c-v">"#demoModal"</span><span class="c-s">&gt;</span><br>
+&nbsp;&nbsp;Open<br>
+<span class="c-s">&lt;/button&gt;</span>
+        </div>
+      </div>
+      <div class="modal-footer" style="border-top:1px solid var(--border2);">
+        <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary btn-sm">Got it!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4 align-items-start justify-content-between">
+      <div class="col-lg-4">
+        <div class="footer-brand">Rajesh Karki</div>
+        <p class="text-small text-gray max-w-sm mt-xs">CET138 Full Stack Development ePortfolio.</p>
+        <div class="footer-socials mt-3">
+          <a href="https://github.com/rajeshkarki9" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+          <a href="https://www.linkedin.com/in/rajesh-karki-478a9b274/" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="https://karkirajesh.com.np/" target="_blank" title="Website"><i class="bi bi-globe"></i></a>
+          <a href="mailto:ctit25e.rjs@ismt.edu.np" title="Email"><i class="bi bi-envelope"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <h6 style="font-family:var(--font-head);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;">Navigation</h6>
+        <div class="footer-nav-links d-flex flex-column gap-2">
+          <a href="index.html">Home</a><a href="about.html">Full Stack Dev</a><a href="html.html">HTML</a>
+          <a href="css.html">CSS</a><a href="bootstrap.html">Bootstrap</a><a href="javascript.html">JavaScript</a><a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <h6 style="font-family:var(--font-head);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;">Tech Stack</h6>
+        <div class="d-flex flex-wrap gap-2"><span class="chip">HTML5</span><span class="chip-amber">CSS3</span><span class="chip">Bootstrap 5</span><span class="chip-amber">JavaScript</span></div>
+      </div>
+    </div>
+    <div class="footer-copy d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span>© 2024 Rajesh Karki · CET138 ePortfolio</span>
+      <span>Built with HTML, CSS, Bootstrap &amp; JS</span>
+    </div>
+  </div>
+</footer>
+
+<button id="backTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+<div id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+<script>
+  // Enable tooltips
+  document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
+    new bootstrap.Tooltip(el);
+  });
+  // Toast btn
+  document.getElementById('toastBtn').addEventListener('click', () => {
+    showToast('Bootstrap Toast via JavaScript! 🎉');
+  });
+</script>
+</body>
+</html>

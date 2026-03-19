@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rajesh Karki</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet"/>
+  <style>
+    /* ── CONTACT-SPECIFIC ── */
+    .contact-hero {
+      padding: calc(var(--nav-h) + 4rem) 0 3rem;
+      text-align: center;
+      position: relative;
+    }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2.5rem;
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition);
+    }
+    .form-card:hover { border-color: var(--border); }
+
+    /* ── FLOATING LABEL INPUTS ── */
+    .field-wrap { position: relative; margin-bottom: 2rem; }
+    .field-wrap label {
+      position: absolute; top: 50%; left: 1.1rem;
+      transform: translateY(-50%);
+      font-size: .87rem; color: var(--text3);
+      pointer-events: none;
+      transition: var(--transition);
+      background: transparent;
+      padding: 0 .25rem;
+      z-index: 1;
+    }
+    .field-wrap.textarea-wrap label { top: 1.1rem; transform: none; }
+    .field-wrap input:focus ~ label,
+    .field-wrap input:not(:placeholder-shown) ~ label,
+    .field-wrap select:focus ~ label,
+    .field-wrap select:not([value=""]) ~ label,
+    .field-wrap textarea:focus ~ label,
+    .field-wrap textarea:not(:placeholder-shown) ~ label {
+      top: 0; transform: translateY(-50%);
+      font-size: .72rem; color: var(--accent);
+      background: var(--bg);
+    }
+    .field-wrap input,
+    .field-wrap select,
+    .field-wrap textarea {
+      width: 100%;
+      background: var(--bg2);
+      border: 1.5px solid var(--border2);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: .9rem;
+      padding: 1rem 1.1rem;
+      outline: none;
+      transition: var(--transition);
+      appearance: none;
+    }
+    .field-wrap textarea { resize: vertical; min-height: 150px; }
+    .field-wrap input:focus,
+    .field-wrap select:focus,
+    .field-wrap textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+      background: var(--bg3);
+    }
+    .field-wrap input.valid,
+    .field-wrap select.valid,
+    .field-wrap textarea.valid {
+      border-color: var(--emerald);
+    }
+    .field-wrap input.invalid,
+    .field-wrap select.invalid,
+    .field-wrap textarea.invalid {
+      border-color: var(--rose);
+    }
+    .field-icon {
+      position: absolute; right: 1rem; top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem; pointer-events: none;
+      transition: var(--transition);
+    }
+    .textarea-wrap .field-icon { top: 1.1rem; transform: none; }
+    .field-valid-icon { color: var(--emerald); display: none; }
+    .field-invalid-icon { color: var(--rose); display: none; }
+    .field-msg {
+      font-size: .75rem; margin-top: .3rem; min-height: 1.1rem;
+      padding-left: .2rem;
+    }
+    .field-msg.err { color: var(--rose); }
+    .field-msg.ok  { color: var(--emerald); }
+
+    /* ── SELECT ARROW ── */
+    .field-wrap select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%235c6882' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    .field-wrap select option {
+      background: var(--bg2); color: var(--text);
+    }
+
+    /* ── SUBMIT BUTTON ── */
+    .btn-submit {
+      width: 100%;
+      padding: 1.1rem;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--accent) 0%, #0099cc 100%);
+      color: #000;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative; overflow: hidden;
+      letter-spacing: .5px;
+      margin-top: 1rem;
+    }
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px var(--accent-glow);
+      filter: brightness(1.08);
+    }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit .spinner {
+      display: inline-block;
+      width: 18px; height: 18px;
+      border: 2px solid rgba(0,0,0,.3);
+      border-top-color: #000;
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+      vertical-align: middle; margin-right: .5rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── CONTACT INFO CARDS ── */
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      display: flex; align-items: flex-start; gap: 1.25rem;
+      transition: var(--transition);
+    }
+    .info-card:hover {
+      border-color: var(--border);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+    .info-icon {
+      width: 46px; height: 46px; flex-shrink: 0;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .info-label {
+      font-size: .72rem; text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 700;
+      color: var(--text3); margin-bottom: .2rem;
+    }
+    .info-value {
+      font-size: .92rem; color: var(--text);
+      font-weight: 500;
+    }
+    .info-sub {
+      font-size: .78rem; color: var(--text3); margin-top: .15rem;
+    }
+
+    /* ── CHAR COUNTER ── */
+    .char-counter {
+      font-size: .72rem; color: var(--text3);
+      text-align: right; margin-top: .25rem;
+    }
+    .char-counter.warn { color: var(--amber); }
+    .char-counter.over { color: var(--rose); }
+
+    /* ── SUCCESS STATE ── */
+    .success-overlay {
+      display: none; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center;
+      padding: 3rem 1rem; animation: fade-up .4s both;
+    }
+    .success-checkmark {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(0,230,118,.12);
+      border: 2px solid var(--emerald);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: var(--emerald);
+      margin: 0 auto 1.5rem;
+      animation: pop-in .5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    }
+    @keyframes pop-in {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    /* ── SOCIAL LINKS ── */
+    .social-link {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .85rem 1.1rem;
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: var(--radius-sm); color: var(--text2);
+      text-decoration: none; font-size: .88rem;
+      transition: var(--transition); font-weight: 500;
+    }
+    .social-link:hover {
+      color: var(--text); border-color: var(--border);
+      transform: translateX(4px);
+    }
+    .social-link i { font-size: 1.1rem; width: 22px; text-align: center; }
+
+    /* ── AVAILABILITY BADGE ── */
+    .avail-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(0,230,118,.1); border: 1px solid rgba(0,230,118,.25);
+      border-radius: 50px; padding: .4rem 1rem;
+      font-size: .78rem; font-weight: 700; color: var(--emerald);
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
+    .avail-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--emerald);
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100%{box-shadow:0 0 0 0 rgba(0,230,118,.4)}
+      50%{box-shadow:0 0 0 7px rgba(0,230,118,0)}
+    }
+
+    /* ── JS NOTE BOX ── */
+    .js-note {
+      background: var(--amber-dim); border: 1px solid rgba(255,171,64,.25);
+      border-radius: var(--radius-sm); padding: 1rem 1.25rem;
+      font-size: .83rem; color: var(--text2); line-height: 1.6;
+    }
+    .js-note strong { color: var(--amber); }
+
+    /* Validation demo specific */
+    .req-dot { color: var(--rose); margin-left: 2px; font-size: .7rem; }
+  </style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- ── NAVBAR ──────────────────────────────────────────────────────── -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand nav-brand" href="index.html">Rajesh Karki</a>
+    <div class="d-flex align-items-center gap-2 order-lg-last">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme"><i class="bi bi-sun-fill"></i></button>
+      <button class="navbar-toggler ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house me-1"></i>Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-layers me-1"></i>Full Stack</a></li>
+        <li class="nav-item"><a class="nav-link" href="html.html"><i class="bi bi-filetype-html me-1"></i>HTML</a></li>
+        <li class="nav-item"><a class="nav-link" href="css.html"><i class="bi bi-filetype-css me-1"></i>CSS</a></li>
+        <li class="nav-item"><a class="nav-link" href="bootstrap.html"><i class="bi bi-bootstrap me-1"></i>Bootstrap</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript.html"><i class="bi bi-filetype-js me-1"></i>JavaScript</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────────────────── -->
+<section class="contact-hero reveal">
+  <div class="container">
+    <div class="avail-badge mb-3">
+      <div class="avail-dot"></div>
+      Open to opportunities
+    </div>
+    <h1 class="section-title">Get In <span class="glow">Touch</span></h1>
+    <p class="section-sub" style="max-width:520px;margin:0 auto;">
+      Interested in working together or want to discuss my portfolio? Fill out the form below and all validation runs client-side with JavaScript.
+    </p>
+  </div>
+</section>
+
+<!-- ── MAIN CONTENT ─────────────────────────────────────────────────── -->
+<section class="py-6">
+  <div class="container">
+    <div class="row g-5 justify-content-center">
+
+      <!-- ── LEFT: FORM ── -->
+      <div class="col-lg-7 reveal">
+        <div class="form-card">
+
+          <!-- Form state -->
+          <div id="formContent">
+            <div class="d-flex align-items-center gap-2 mb-4">
+              <div style="width:40px;height:40px;border-radius:10px;background:var(--accent-dim);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.1rem;">
+                <i class="bi bi-chat-dots"></i>
+              </div>
+              <div>
+                <h5 style="font-family:var(--font-head);font-weight:700;margin:0;">Send a Message</h5>
+                <p style="font-size:.78rem;color:var(--text3);margin:0;">All fields marked <span class="req-dot">●</span> are required</p>
+              </div>
+            </div>
+
+            <!-- JS NOTE -->
+            <div class="js-note mb-4">
+              <span><i class="bi bi-lightning-charge-fill me-1"></i>JavaScript Validation Demo:</span>
+              This form uses pure client-side JS regex patterns, real-time feedback, character counters and a simulated async submission. No backend required.
+            </div>
+
+            <div class="row g-0">
+
+              <!-- Name -->
+              <div class="col-md-6 pe-md-2">
+                <div class="field-wrap">
+                  <input type="text" id="cName" placeholder=" " autocomplete="name"/>
+                  <label for="cName">Full Name <span class="req-dot">●</span></label>
+                  <span class="field-icon">
+                    <i class="bi bi-check-circle-fill field-valid-icon" id="cName-ok"></i>
+                    <i class="bi bi-x-circle-fill field-invalid-icon" id="cName-err-ico"></i>
+                  </span>
+                </div>
+                <p class="field-msg" id="cName-msg"></p>
+              </div>
+
+              <!-- Email -->
+              <div class="col-md-6 ps-md-2">
+                <div class="field-wrap">
+                  <input type="email" id="cEmail" placeholder=" " autocomplete="email"/>
+                  <label for="cEmail">Email Address <span class="req-dot">●</span></label>
+                  <span class="field-icon">
+                    <i class="bi bi-check-circle-fill field-valid-icon" id="cEmail-ok"></i>
+                    <i class="bi bi-x-circle-fill field-invalid-icon" id="cEmail-err-ico"></i>
+                  </span>
+                </div>
+                <p class="field-msg" id="cEmail-msg"></p>
+              </div>
+
+              <!-- Subject dropdown -->
+              <div class="col-12">
+                <div class="field-wrap">
+                  <select id="cSubject">
+                    <option value="" disabled selected hidden></option>
+                    <option value="portfolio">Portfolio Feedback</option>
+                    <option value="opportunity">Job / Internship Opportunity</option>
+                    <option value="collaboration">Project Collaboration</option>
+                    <option value="question">General Question</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <label for="cSubject">Subject <span class="req-dot">●</span></label>
+                  <span class="field-icon">
+                    <i class="bi bi-check-circle-fill field-valid-icon" id="cSubject-ok"></i>
+                    <i class="bi bi-x-circle-fill field-invalid-icon" id="cSubject-err-ico"></i>
+                  </span>
+                </div>
+                <p class="field-msg" id="cSubject-msg"></p>
+              </div>
+
+              <!-- Phone (optional) -->
+              <div class="col-12">
+                <div class="field-wrap">
+                  <input type="tel" id="cPhone" placeholder=" " autocomplete="tel"/>
+                  <label for="cPhone">Phone Number <span style="color:var(--text3);font-size:.7rem;">(optional)</span></label>
+                  <span class="field-icon">
+                    <i class="bi bi-check-circle-fill field-valid-icon" id="cPhone-ok"></i>
+                    <i class="bi bi-x-circle-fill field-invalid-icon" id="cPhone-err-ico"></i>
+                  </span>
+                </div>
+                <p class="field-msg" id="cPhone-msg"></p>
+              </div>
+
+              <!-- Message -->
+              <div class="col-12">
+                <div class="field-wrap textarea-wrap">
+                  <textarea id="cMessage" placeholder=" " maxlength="600"></textarea>
+                  <label for="cMessage">Message <span class="req-dot">●</span></label>
+                  <span class="field-icon">
+                    <i class="bi bi-check-circle-fill field-valid-icon" id="cMessage-ok"></i>
+                    <i class="bi bi-x-circle-fill field-invalid-icon" id="cMessage-err-ico"></i>
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <p class="field-msg" id="cMessage-msg"></p>
+                  <p class="char-counter" id="charCount">0 / 600</p>
+                </div>
+              </div>
+
+              <!-- Agree checkbox -->
+              <div class="col-12 mb-4">
+                <div class="d-flex align-items-start gap-2">
+                  <input type="checkbox" id="cAgree" style="width:16px;height:16px;margin-top:3px;accent-color:var(--accent);flex-shrink:0;cursor:pointer;"/>
+                  <label for="cAgree" style="font-size:.83rem;color:var(--text2);cursor:pointer;line-height:1.5;">
+                    I understand this form doesn't send real emails it's a JavaScript validation demo for a university portfolio project. <span class="req-dot">●</span>
+                  </label>
+                </div>
+                <p class="field-msg err" id="cAgree-msg" style="padding-left:1.3rem;"></p>
+              </div>
+
+            </div><!-- /row -->
+
+            <button class="btn-submit" id="submitBtn" onclick="submitContactForm()">
+              <i class="bi bi-send me-2"></i>Send Message
+            </button>
+
+          </div><!-- /formContent -->
+
+          <!-- Success state (hidden until form submitted) -->
+          <div class="success-overlay" id="successOverlay">
+            <div class="success-checkmark"><i class="bi bi-check-lg"></i></div>
+            <h4 style="font-family:var(--font-head);font-weight:800;margin-bottom:.75rem;">Message "Sent"!</h4>
+            <p style="color:var(--text2);font-size:.92rem;max-width:340px;line-height:1.7;margin-bottom:2rem;">
+              In a real app, this would fire off an API request or server-side mailer. Here, JavaScript validated every field and simulated the submission demonstrating async UI patterns without a backend.
+            </p>
+            <div class="d-flex flex-wrap gap-2 justify-content-center mb-3">
+              <button class="btn-outline-custom" onclick="resetContactForm()"><i class="bi bi-arrow-clockwise me-1"></i>Send Another</button>
+              <a href="javascript.html" class="btn-primary-custom"><i class="bi bi-filetype-js me-1"></i>See JS Page</a>
+            </div>
+            <div class="js-note" style="max-width:380px;">
+              <span>What happened?</span> The submit handler validated all regex patterns, toggled CSS classes, used <code>setTimeout()</code> to simulate async delay, and swapped DOM elements all pure JavaScript.
+            </div>
+          </div>
+
+        </div><!-- /form-card -->
+      </div>
+
+      <!-- ── RIGHT: INFO + SOCIAL ── -->
+      <div class="col-lg-4 reveal">
+
+        <!-- Info cards -->
+        <div class="d-flex flex-column gap-4 mb-4">
+
+          <div class="info-card">
+            <div class="info-icon" style="background:var(--accent-dim);color:var(--accent);">
+              <i class="bi bi-envelope-at"></i>
+            </div>
+            <div>
+              <p class="info-label">Email</p>
+              <p class="info-value">ctit25e.rjs@ismt.edu.np</p>
+              <p class="info-sub">Replies within 24 hours</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon" style="background:var(--amber-dim);color:var(--amber);">
+              <i class="bi bi-geo-alt"></i>
+            </div>
+            <div>
+              <p class="info-label">Location</p>
+              <p class="info-value">Bharatpur -10, Chitwan, Nepal</p>
+              <p class="info-sub">Open to remote opportunities</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon" style="background:var(--rose-dim);color:var(--rose);">
+              <i class="bi bi-calendar-check"></i>
+            </div>
+            <div>
+              <p class="info-label">Institution</p>
+              <p class="info-value">ISMT Chitwan & University of Sunderland</p>
+              <p class="info-sub">CET138 Full Stack Development</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Social links -->
+        <h6 style="font-family:var(--font-head);font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:.9rem;">Find Me Online</h6>
+        <div class="d-flex flex-column gap-2 mb-4">
+          <a href="https://karkirajesh.com.np/" target="_blank" class="social-link"><i class="bi bi-globe" style="color:var(--accent);"></i> Website <span style="margin-left:auto;font-size:.75rem;color:var(--text3);">karkirajesh.com.np</span></a>
+          <a href="https://github.com/rajeshkarki9" target="_blank" class="social-link"><i class="bi bi-github" style="color:var(--text2);"></i> GitHub Pro <span style="margin-left:auto;font-size:.75rem;color:var(--text3);">rajeshkarki9</span></a>
+          <a href="https://github.com/Rajeshkarki007" target="_blank" class="social-link"><i class="bi bi-github" style="color:var(--text2);"></i> GitHub Dev <span style="margin-left:auto;font-size:.75rem;color:var(--text3);">Rajeshkarki007</span></a>
+          <a href="https://www.linkedin.com/in/rajesh-karki-478a9b274/" target="_blank" class="social-link"><i class="bi bi-linkedin" style="color:#0a66c2;"></i> LinkedIn <span style="margin-left:auto;font-size:.75rem;color:var(--text3);">rajesh-karki</span></a>
+          <a href="mailto:ctit25e.rjs@ismt.edu.np" class="social-link"><i class="bi bi-envelope" style="color:var(--accent);"></i> Email <span style="margin-left:auto;font-size:.75rem;color:var(--text3);">ctit25e.rjs@ismt.edu.np</span></a>
+        </div>
+
+        <!-- Quick response note -->
+        <div class="glass-card" style="padding:1.25rem;">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <i class="bi bi-clock" style="color:var(--accent);"></i>
+            <span style="font-size:.82rem;font-weight:700;font-family:var(--font-head);">Response Time</span>
+          </div>
+          <p style="font-size:.8rem;color:var(--text2);line-height:1.6;margin:0;">
+            I typically respond to enquiries within <span style="color:var(--text);">24–48 hours</span>. For urgent matters, reach out via LinkedIn for a faster reply.
+          </p>
+        </div>
+
+      </div><!-- /right col -->
+    </div><!-- /row -->
+  </div>
+</section>
+
+<!-- ── JS EXPLANATION ────────────────────────────────────────────────── -->
+<section class="py-6">
+  <div class="container">
+    <div class="glass-card reveal" style="padding: 3rem;">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-5">
+          <span class="chip mb-3"><i class="bi bi-filetype-js me-1"></i>JavaScript Focus</span>
+          <h3 style="font-family:var(--font-head);font-weight:800;font-size:1.8rem;margin-bottom:1.5rem;line-height:1.2;">
+            How the Validation Works
+          </h3>
+          <p style="color:var(--text2);line-height:1.8;font-size:.95rem;margin-bottom:1.5rem;">
+            The form uses several JavaScript techniques to provide a smooth, real-time user experience entirely without server communication.
+          </p>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="chip"><i class="bi bi-regex me-1"></i>Regex Patterns</span>
+            <span class="chip-amber"><i class="bi bi-arrow-repeat me-1"></i>Event Listeners</span>
+            <span class="chip"><i class="bi bi-node-plus me-1"></i>DOM Manipulation</span>
+            <span class="chip-amber"><i class="bi bi-hourglass-split me-1"></i>Async Simulation</span>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="row g-4">
+            <div class="col-sm-6">
+              <div class="glass-card card-inner" style="height:100%; padding: 1.5rem;">
+                <i class="bi bi-regex" style="color:var(--accent);font-size:1.4rem;margin-bottom:.8rem;display:block;"></i>
+                <h6 style="font-family:var(--font-head);font-weight:700;font-size:.92rem;margin-bottom:.6rem;">Regex Validation</h6>
+                <p style="font-size:.8rem;color:var(--text2);line-height:1.7;margin:0;">
+                  Email: <code style="font-size:.75rem;color:#111827;">/^[\w.-]+@[\w.-]+\.\w{2,}$/</code><br><br>
+                  Phone: <code style="font-size:.75rem;color:#111827;">/^[\d\s+\-()]{7,15}$/</code>
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="glass-card card-inner" style="height:100%; padding: 1.5rem;">
+                <i class="bi bi-keyboard" style="color:var(--amber);font-size:1.4rem;margin-bottom:.8rem;display:block;"></i>
+                <h6 style="font-family:var(--font-head);font-weight:700;font-size:.92rem;margin-bottom:.6rem;">Real-time Feedback</h6>
+                <p style="font-size:.8rem;color:var(--text2);line-height:1.7;margin:0;">
+                  <code style="font-size:.75rem;color:#111827;">input</code> and <code style="font-size:.75rem;color:#111827;">blur</code> event listeners update border colour, icons and messages instantly as you type.
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="glass-card card-inner" style="height:100%; padding: 1.5rem;">
+                <i class="bi bi-ui-checks" style="color:var(--rose);font-size:1.4rem;margin-bottom:.8rem;display:block;"></i>
+                <h6 style="font-family:var(--font-head);font-weight:700;font-size:.92rem;margin-bottom:.6rem;">DOM State Toggle</h6>
+                <p style="font-size:.8rem;color:var(--text2);line-height:1.7;margin:0;">
+                  On submit, <code style="font-size:.75rem;color:#111827;">classList.add/remove()</code> swaps <code style="font-size:.75rem;color:#111827;">.valid</code> / <code style="font-size:.75rem;color:#111827;">.invalid</code> classes and toggles icon visibility.
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="glass-card card-inner" style="height:100%; padding: 1.5rem;">
+                <i class="bi bi-arrow-left-right" style="color:var(--emerald);font-size:1.4rem;margin-bottom:.8rem;display:block;"></i>
+                <h6 style="font-family:var(--font-head);font-weight:700;font-size:.92rem;margin-bottom:.6rem;">Async Simulation</h6>
+                <p style="font-size:.8rem;color:var(--text2);line-height:1.7;margin:0;">
+                  A spinner appears for 1.8 s using <code style="font-size:.75rem;color:#111827;">setTimeout()</code>, then the form swaps to a success view mimicking a real API call.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PAGE NAV ─────────────────────────────────────────────────────── -->
+<section class="py-3">
+  <div class="container">
+    <div class="d-flex justify-content-between flex-wrap gap-3">
+      <a href="javascript.html" class="btn-outline-custom"><i class="bi bi-arrow-left me-2"></i>Previous: JavaScript</a>
+      <a href="index.html" class="btn-primary-custom"><i class="bi bi-house me-2"></i>Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4 align-items-start justify-content-between">
+      <div class="col-lg-4">
+        <div class="footer-brand">Rajesh Karki</div>
+        <p class="text-small text-gray max-w-sm mt-xs">CET138 Full Stack Development ePortfolio.</p>
+        <div class="footer-socials mt-3">
+          <a href="https://github.com/rajeshkarki9" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+          <a href="https://www.linkedin.com/in/rajesh-karki-478a9b274/" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="https://karkirajesh.com.np/" target="_blank" title="Website"><i class="bi bi-globe"></i></a>
+          <a href="mailto:ctit25e.rjs@ismt.edu.np" title="Email"><i class="bi bi-envelope"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <h6 style="font-family:var(--font-head);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;">Navigation</h6>
+        <div class="footer-nav-links d-flex flex-column gap-2">
+          <a href="index.html">Home</a><a href="about.html">Full Stack Dev</a><a href="html.html">HTML</a>
+          <a href="css.html">CSS</a><a href="bootstrap.html">Bootstrap</a><a href="javascript.html">JavaScript</a><a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <h6 style="font-family:var(--font-head);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;">Tech Stack</h6>
+        <div class="d-flex flex-wrap gap-2"><span class="chip">HTML5</span><span class="chip-amber">CSS3</span><span class="chip">Bootstrap 5</span><span class="chip-amber">JavaScript</span></div>
+      </div>
+    </div>
+    <div class="footer-copy d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span>© 2024 Rajesh Karki · CET138 ePortfolio</span>
+      <span>Built with HTML, CSS, Bootstrap &amp; JS</span>
+    </div>
+  </div>
+<button id="backTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+<div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+<script>
+/* ── CONTACT PAGE SCRIPTS ── */
+
+// ── Field state helper ──────────────────────────────────────────────────
+function setFieldState(id, state, message) {
+  // state: 'valid' | 'invalid' | 'reset'
+  const el   = document.getElementById(id);
+  const msg  = document.getElementById(id + '-msg');
+  const ok   = document.getElementById(id + '-ok');
+  const errI = document.getElementById(id + '-err-ico');
+
+  if (!el) return;
+  el.classList.remove('valid','invalid');
+  if (ok)   ok.style.display   = 'none';
+  if (errI) errI.style.display = 'none';
+  if (msg)  { msg.textContent = ''; msg.className = 'field-msg'; }
+
+  if (state === 'valid') {
+    el.classList.add('valid');
+    if (ok)   ok.style.display   = 'inline';
+    if (msg)  { msg.textContent = message || ''; msg.className = 'field-msg ok'; }
+  } else if (state === 'invalid') {
+    el.classList.add('invalid');
+    if (errI) errI.style.display = 'inline';
+    if (msg)  { msg.textContent = message || 'Please check this field.'; msg.className = 'field-msg err'; }
+  }
+}
+
+// ── Validators ─────────────────────────────────────────────────────────
+const validators = {
+  cName:    v => v.trim().length >= 2,
+  cEmail:   v => /^[\w.\-+]+@[\w.\-]+\.[a-z]{2,}$/i.test(v.trim()),
+  cSubject: v => v !== '' && v !== null,
+  cPhone:   v => v.trim() === '' || /^[\d\s\+\-\(\)]{7,15}$/.test(v.trim()),
+  cMessage: v => v.trim().length >= 20,
+};
+
+const errMsgs = {
+  cName:    'Please enter your full name (min 2 characters).',
+  cEmail:   'Enter a valid email address, e.g. name@example.com',
+  cSubject: 'Please choose a subject.',
+  cPhone:   'Enter a valid phone number or leave it blank.',
+  cMessage: 'Your message must be at least 20 characters.',
+};
+
+function validateContactField(id) {
+  const el  = document.getElementById(id);
+  if (!el) return true;
+  const val = el.value;
+  const ok  = validators[id] ? validators[id](val) : true;
+
+  if (id === 'cPhone' && val.trim() === '') {
+    setFieldState(id, 'reset'); return true;  // optional — allow blank
+  }
+
+  setFieldState(id, ok ? 'valid' : 'invalid', ok ? '' : errMsgs[id]);
+  return ok;
+}
+
+// ── Real-time listeners ─────────────────────────────────────────────────
+['cName','cEmail','cPhone','cMessage'].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('input',  () => validateContactField(id));
+  el.addEventListener('blur',   () => validateContactField(id));
+});
+document.getElementById('cSubject')?.addEventListener('change', () => validateContactField('cSubject'));
+
+// ── Character counter ───────────────────────────────────────────────────
+const msgEl      = document.getElementById('cMessage');
+const charCount  = document.getElementById('charCount');
+if (msgEl && charCount) {
+  msgEl.addEventListener('input', () => {
+    const len = msgEl.value.length;
+    charCount.textContent = len + ' / 600';
+    charCount.className   = 'char-counter' + (len > 550 ? (len >= 600 ? ' over' : ' warn') : '');
+  });
+}
+
+// ── Submit ──────────────────────────────────────────────────────────────
+function submitContactForm() {
+  const fields   = ['cName','cEmail','cSubject','cPhone','cMessage'];
+  let   allOk    = true;
+
+  fields.forEach(id => { if (!validateContactField(id)) allOk = false; });
+
+  // Checkbox
+  const agree = document.getElementById('cAgree');
+  const agreeMsg = document.getElementById('cAgree-msg');
+  if (!agree.checked) {
+    agreeMsg.textContent = 'Please tick the checkbox to continue.';
+    allOk = false;
+  } else {
+    agreeMsg.textContent = '';
+  }
+
+  if (!allOk) {
+    showToast('Please fix the highlighted fields.', 'err');
+    return;
+  }
+
+  // Simulate async submission
+  const btn = document.getElementById('submitBtn');
+  btn.disabled    = true;
+  btn.innerHTML   = '<span class="spinner"></span> Sending…';
+
+  setTimeout(() => {
+    document.getElementById('formContent').style.display   = 'none';
+    const s = document.getElementById('successOverlay');
+    s.style.display = 'flex';
+    showToast('Message sent successfully! 🎉', 'ok');
+  }, 1800);
+}
+
+// ── Reset ───────────────────────────────────────────────────────────────
+function resetContactForm() {
+  // Reset all fields
+  ['cName','cEmail','cPhone','cMessage'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.value = ''; setFieldState(id, 'reset'); }
+  });
+  const subj = document.getElementById('cSubject');
+  if (subj) { subj.selectedIndex = 0; setFieldState('cSubject','reset'); }
+  document.getElementById('cAgree').checked = false;
+  document.getElementById('cAgree-msg').textContent = '';
+  if (charCount) charCount.textContent = '0 / 600';
+
+  // Swap back
+  document.getElementById('successOverlay').style.display = 'none';
+  document.getElementById('formContent').style.display    = 'block';
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled  = false;
+  btn.innerHTML = '<i class="bi bi-send me-2"></i>Send Message';
+}
+</script>
+</body>
+</html>

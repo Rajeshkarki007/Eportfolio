@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rajesh Karki</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet"/>
+  <style>
+    .demo-panel {
+      background: #f9fafb; border: 1px solid #e5e7eb;
+      border-radius: var(--radius); padding: 1.75rem; height: 100%;
+    }
+    .js-btn {
+      background: transparent; border: 1px solid #d1d5db;
+      color: #6b7280; border-radius: 8px; padding: .4rem .9rem;
+      font-size: .8rem; font-weight: 600; cursor: pointer;
+      transition: var(--transition); font-family: var(--font-head);
+    }
+    .js-btn:hover { border-color: #f59e0b; color: #f59e0b; }
+    .js-btn.active-method { background: #f59e0b; color:#000; border-color:#f59e0b; }
+
+    .ripple-btn {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #2563eb, #f59e0b);
+      color: #fff; font-weight: 700; border: none;
+      padding: .75rem 2rem; border-radius: 50px; cursor: pointer;
+      font-family: var(--font-head); font-size: .9rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .ripple-btn:hover { transform: scale(1.04); box-shadow: 0 8px 28px rgba(37, 99, 235, .35); }
+    .ripple-btn .ripple {
+      position: absolute; border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      transform: scale(0); animation: ripple-anim .5s linear;
+      pointer-events: none;
+    }
+    @keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
+
+    /* Todo list */
+    .todo-item {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .65rem .9rem; border-radius: 8px;
+      border: 1px solid #e5e7eb; margin-bottom: .4rem;
+      background: #f3f4f6; transition: var(--transition);
+      font-size: .88rem;
+    }
+    .todo-item:hover { border-color: #d1d5db; }
+    .todo-item.done { opacity: .5; }
+    .todo-item.done span { text-decoration: line-through; }
+    .todo-del { margin-left: auto; background: none; border: none; color: var(--rose); cursor: pointer; font-size: .9rem; opacity:.6; transition:.2s; }
+    .todo-del:hover { opacity: 1; }
+    .todo-chk { accent-color: var(--emerald); width:15px; height:15px; cursor:pointer; }
+  </style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand nav-brand" href="index.html">Rajesh Karki</a>
+    <div class="d-flex align-items-center gap-2 order-lg-last">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme"><i class="bi bi-sun-fill"></i></button>
+      <button class="navbar-toggler ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house me-1"></i>Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-layers me-1"></i>Full Stack</a></li>
+        <li class="nav-item"><a class="nav-link" href="html.html"><i class="bi bi-filetype-html me-1"></i>HTML</a></li>
+        <li class="nav-item"><a class="nav-link" href="css.html"><i class="bi bi-filetype-css me-1"></i>CSS</a></li>
+        <li class="nav-item"><a class="nav-link" href="bootstrap.html"><i class="bi bi-bootstrap me-1"></i>Bootstrap</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript.html"><i class="bi bi-filetype-js me-1"></i>JavaScript</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <i class="page-hero-icon">⚡</i>
+      <h1 class="section-title"><span style="color:var(--amber)">JavaScript</span><br>The Language of the Web</h1>
+      <div class="divider" style="background:linear-gradient(90deg,var(--amber),var(--accent))"></div>
+      <p class="section-lead max-w-md">JavaScript is what makes webpages dynamic and interactive. It runs in the browser, manipulates the DOM, handles events, validates forms, makes API calls, and brings the entire web experience to life.</p>
+    </div>
+  </div>
+
+  <!-- KEY CONCEPTS -->
+  <section>
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-6 text-center reveal">
+          <span class="eyebrow">Core Concepts</span>
+          <h2 class="section-title">JavaScript Fundamentals</h2>
+          <div class="divider centered" style="background:linear-gradient(90deg,var(--amber),var(--accent))"></div>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3 reveal reveal-d1">
+          <div class="glass-card card-inner text-center h-100">
+            <div style="font-size:2rem;margin-bottom:.75rem;">📦</div>
+            <h6 style="font-family:var(--font-head);">Variables & Data</h6>
+            <p style="font-size:.82rem;color:var(--text2);line-height:1.65;margin-bottom:.75rem;">Store and manipulate data using <code>const</code>, <code>let</code>, and various data types.</p>
+            <div class="code-block" style="font-size:.7rem;text-align:left;">
+<span class="c-k">const</span> <span class="c-n">name</span> = <span class="c-v">"Alex"</span>;<br>
+<span class="c-k">let</span> <span class="c-n">score</span> = <span class="c-v">0</span>;<br>
+<span class="c-k">const</span> <span class="c-n">isActive</span> = <span class="c-v">true</span>;
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 reveal reveal-d2">
+          <div class="glass-card card-inner text-center h-100">
+            <div style="font-size:2rem;margin-bottom:.75rem;">🔧</div>
+            <h6 style="font-family:var(--font-head);">Functions</h6>
+            <p style="font-size:.82rem;color:var(--text2);line-height:1.65;margin-bottom:.75rem;">Reusable blocks of code. Declare once, call anywhere. ES6 arrow functions are concise and modern.</p>
+            <div class="code-block" style="font-size:.7rem;text-align:left;">
+<span class="c-k">const</span> <span class="c-n">greet</span> = (<span class="c-s">name</span>) => {<br>
+&nbsp;&nbsp;<span class="c-k">return</span> <span class="c-v">`Hello ${name}`</span>;<br>
+};<br>
+<span class="c-n">greet</span>(<span class="c-v">"World"</span>);
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 reveal reveal-d3">
+          <div class="glass-card card-inner text-center h-100">
+            <div style="font-size:2rem;margin-bottom:.75rem;">🎯</div>
+            <h6 style="font-family:var(--font-head);">DOM Manipulation</h6>
+            <p style="font-size:.82rem;color:var(--text2);line-height:1.65;margin-bottom:.75rem;">The Document Object Model lets JS read and change HTML elements in real time.</p>
+            <div class="code-block" style="font-size:.7rem;text-align:left;">
+<span class="c-k">const</span> <span class="c-n">el</span> =<br>
+&nbsp;<span class="c-s">document</span>.<span class="c-n">querySelector</span>(<span class="c-v">"h1"</span>);<br>
+<span class="c-n">el</span>.<span class="c-s">textContent</span> = <span class="c-v">"New!"</span>;
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 reveal reveal-d4">
+          <div class="glass-card card-inner text-center h-100">
+            <div style="font-size:2rem;margin-bottom:.75rem;">👂</div>
+            <h6 style="font-family:var(--font-head);">Event Listeners</h6>
+            <p style="font-size:.82rem;color:var(--text2);line-height:1.65;margin-bottom:.75rem;">Listen for user actions — clicks, input, submit, hover — and respond with JavaScript.</p>
+            <div class="code-block" style="font-size:.7rem;text-align:left;">
+<span class="c-n">btn</span>.<span class="c-s">addEventListener</span>(<br>
+&nbsp;&nbsp;<span class="c-v">"click"</span>,<br>
+&nbsp;&nbsp;() => { <span class="c-c">/* handle */</span> }<br>
+);
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE DEMOS -->
+  <section style="background:var(--bg2);border-top:1px solid var(--border2);">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-6 text-center reveal">
+          <span class="eyebrow">Interactive Demos</span>
+          <h2 class="section-title">JavaScript in Action</h2>
+          <div class="divider centered" style="background:linear-gradient(90deg,var(--amber),var(--accent))"></div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Counter -->
+        <div class="col-lg-4 reveal reveal-d1">
+          <div class="demo-panel">
+            <div class="demo-label"><i class="bi bi-plus-slash-minus"></i> DOM Manipulation — Counter</div>
+            <div class="counter-number" id="counterDisplay">0</div>
+            <div class="d-flex gap-2 justify-content-center mt-3 flex-wrap">
+              <button class="btn-primary-custom" onclick="adjustCounter(-5)" style="padding:.5rem 1rem;font-size:.82rem">-5</button>
+              <button class="btn-primary-custom" onclick="adjustCounter(-1)" style="padding:.5rem 1rem;font-size:.82rem"><i class="bi bi-dash-lg"></i></button>
+              <button class="btn-primary-custom" onclick="adjustCounter(1)" style="padding:.5rem 1rem;font-size:.82rem"><i class="bi bi-plus-lg"></i></button>
+              <button class="btn-primary-custom" onclick="adjustCounter(5)" style="padding:.5rem 1rem;font-size:.82rem">+5</button>
+            </div>
+            <button class="btn-outline-custom w-100 mt-2" onclick="resetCounter()" style="padding:.5rem;font-size:.82rem;border-radius:8px;"><i class="bi bi-arrow-counterclockwise me-1"></i>Reset</button>
+            <div class="output-box mt-3" id="counterLog">// Click buttons to update DOM...</div>
+          </div>
+        </div>
+
+        <!-- Colour Changer -->
+        <div class="col-lg-4 reveal reveal-d2">
+          <div class="demo-panel">
+            <div class="demo-label"><i class="bi bi-palette2"></i> Event Listeners — Color Changer</div>
+            <div id="colorBox" style="height:90px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--amber));transition:background .5s;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;color:rgba(0,0,0,.7);">Click a colour below!</div>
+            <div class="d-flex flex-wrap gap-2 justify-content-center mb-2">
+              <button onclick="changeColor('linear-gradient(135deg,#00e5ff,#0077aa)')" style="width:34px;height:34px;background:linear-gradient(135deg,#00e5ff,#0077aa);border:none;border-radius:50%;cursor:pointer;transition:.2s;" onmouseenter="this.style.transform='scale(1.15)'" onmouseleave="this.style.transform='scale(1)'"></button>
+              <button onclick="changeColor('linear-gradient(135deg,#ffab40,#e67e00)')" style="width:34px;height:34px;background:linear-gradient(135deg,#ffab40,#e67e00);border:none;border-radius:50%;cursor:pointer;transition:.2s;" onmouseenter="this.style.transform='scale(1.15)'" onmouseleave="this.style.transform='scale(1)'"></button>
+              <button onclick="changeColor('linear-gradient(135deg,#ff5c8d,#c62a5b)')" style="width:34px;height:34px;background:linear-gradient(135deg,#ff5c8d,#c62a5b);border:none;border-radius:50%;cursor:pointer;transition:.2s;" onmouseenter="this.style.transform='scale(1.15)'" onmouseleave="this.style.transform='scale(1)'"></button>
+              <button onclick="changeColor('linear-gradient(135deg,#00e676,#009e52)')" style="width:34px;height:34px;background:linear-gradient(135deg,#00e676,#009e52);border:none;border-radius:50%;cursor:pointer;transition:.2s;" onmouseenter="this.style.transform='scale(1.15)'" onmouseleave="this.style.transform='scale(1)'"></button>
+              <button onclick="changeColor('linear-gradient(135deg,#7b5ea7,#a855f7)')" style="width:34px;height:34px;background:linear-gradient(135deg,#7b5ea7,#a855f7);border:none;border-radius:50%;cursor:pointer;transition:.2s;" onmouseenter="this.style.transform='scale(1.15)'" onmouseleave="this.style.transform='scale(1)'"></button>
+              <button onclick="randomColor()" style="width:34px;height:34px;background:conic-gradient(red,yellow,green,cyan,blue,magenta,red);border:none;border-radius:50%;cursor:pointer;transition:.2s;font-size:.7rem;" title="Random!" onmouseenter="this.style.transform='scale(1.15)'" onmouseleave="this.style.transform='scale(1)'">🎲</button>
+            </div>
+            <div class="output-box" id="colorLog">// background style updated via JS</div>
+          </div>
+        </div>
+
+        <!-- String Reverser + Array -->
+        <div class="col-lg-4 reveal reveal-d3">
+          <div class="demo-panel">
+            <div class="demo-label"><i class="bi bi-arrow-left-right"></i> Functions — String Reverser</div>
+            <div class="field-wrap">
+              <label>Type something to reverse it:</label>
+              <input type="text" id="reverseInput" class="field-input" placeholder="Hello World" oninput="reverseString()">
+            </div>
+            <div class="output-box mb-3" id="reverseOutput">// Result appears here...</div>
+
+            <div class="demo-label mt-2"><i class="bi bi-list-ol"></i> Array Methods</div>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <button class="js-btn" onclick="arrayDemo('map');this.classList.add('active-method');document.querySelectorAll('.js-btn').forEach(b=>b!==this&&b.classList.remove('active-method'))">.map()</button>
+              <button class="js-btn" onclick="arrayDemo('filter');this.classList.add('active-method');document.querySelectorAll('.js-btn').forEach(b=>b!==this&&b.classList.remove('active-method'))">.filter()</button>
+              <button class="js-btn" onclick="arrayDemo('reduce');this.classList.add('active-method');document.querySelectorAll('.js-btn').forEach(b=>b!==this&&b.classList.remove('active-method'))">.reduce()</button>
+              <button class="js-btn" onclick="arrayDemo('find');this.classList.add('active-method');document.querySelectorAll('.js-btn').forEach(b=>b!==this&&b.classList.remove('active-method'))">.find()</button>
+            </div>
+            <div class="output-box" id="arrayOutput">// Click a method above to see result...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIPPLE BUTTON & TODO -->
+  <section>
+    <div class="container">
+      <div class="row g-4">
+        <!-- Ripple Button -->
+        <div class="col-lg-5 reveal reveal-d1">
+          <span class="eyebrow">Button Click Effects</span>
+          <h3 class="section-title" style="font-size:1.6rem;">Ripple Effect Demo</h3>
+          <div class="divider" style="background:linear-gradient(90deg,var(--amber),var(--accent))"></div>
+          <p style="color:var(--text2);font-size:.9rem;line-height:1.75;margin-bottom:1.5rem;">A ripple animation is created dynamically using JavaScript — calculating the click position and injecting a ripple element into the DOM.</p>
+          <div class="text-center p-4" style="background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);">
+            <button class="ripple-btn" id="rippleBtn"><i class="bi bi-lightning-charge me-2"></i>Click Me for Ripple!</button>
+          </div>
+          <div class="code-block mt-3" style="font-size:.73rem;">
+<span class="c-n">btn</span>.<span class="c-s">addEventListener</span>(<span class="c-v">"click"</span>, (<span class="c-s">e</span>) => {<br>
+&nbsp;&nbsp;<span class="c-k">const</span> <span class="c-n">ripple</span> = <span class="c-s">document</span>.<span class="c-n">createElement</span>(<span class="c-v">"span"</span>);<br>
+&nbsp;&nbsp;<span class="c-n">ripple</span>.<span class="c-s">className</span> = <span class="c-v">"ripple"</span>;<br>
+&nbsp;&nbsp;<span class="c-c">// Position & size from click coords</span><br>
+&nbsp;&nbsp;<span class="c-n">btn</span>.<span class="c-s">appendChild</span>(<span class="c-n">ripple</span>);<br>
+});
+          </div>
+        </div>
+
+        <!-- Todo List (DOM Manipulation) -->
+        <div class="col-lg-7 reveal reveal-d2">
+          <span class="eyebrow">DOM Manipulation</span>
+          <h3 class="section-title" style="font-size:1.6rem;">Dynamic To-Do List</h3>
+          <div class="divider" style="background:linear-gradient(90deg,var(--amber),var(--accent))"></div>
+          <p style="color:var(--text2);font-size:.9rem;line-height:1.75;margin-bottom:1.5rem;">Add, check off, and delete tasks. Items are created, modified, and removed from the DOM entirely through JavaScript — no page reload needed.</p>
+          <div style="background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:1.5rem;">
+            <div class="d-flex gap-2 mb-3">
+              <input type="text" id="todoInput" class="field-input" placeholder="Add a task..." style="flex:1;" onkeydown="if(event.key==='Enter')addTodo()">
+              <button class="btn-primary-custom" onclick="addTodo()" style="padding:.68rem 1.2rem;border-radius:8px;"><i class="bi bi-plus-lg"></i></button>
+            </div>
+            <div id="todoList">
+              <!-- Pre-filled items -->
+            </div>
+            <div style="font-size:.75rem;color:var(--text3);margin-top:.75rem;text-align:right;" id="todoCount">0 tasks</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM VALIDATION -->
+  <section style="background:var(--bg2);border-top:1px solid var(--border2);">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-6 text-center reveal">
+          <span class="eyebrow">Real-Time Validation</span>
+          <h2 class="section-title">JavaScript Form Validation</h2>
+          <div class="divider centered" style="background:linear-gradient(90deg,var(--amber),var(--accent))"></div>
+          <p class="section-lead centered">Real-time validation using regex patterns, length checks, and visual feedback — all without any backend.</p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-8 reveal">
+          <div class="glass-card card-inner">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="field-wrap">
+                  <label>Full Name * <span style="font-size:.65rem;color:var(--text3)">(min. 3 chars)</span></label>
+                  <input type="text" id="v-name" class="field-input" placeholder="Alex Johnson" oninput="validateField('v-name','v-name-msg',v=>v.trim().length>=3,'Minimum 3 characters required')">
+                  <div class="field-msg" id="v-name-msg"></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="field-wrap">
+                  <label>Email Address * <span style="font-size:.65rem;color:var(--text3)">(must be valid)</span></label>
+                  <input type="email" id="v-email" class="field-input" placeholder="alex@example.com" oninput="validateField('v-email','v-email-msg',v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),'Enter a valid email address')">
+                  <div class="field-msg" id="v-email-msg"></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="field-wrap">
+                  <label>Password * <span style="font-size:.65rem;color:var(--text3)">(min. 8 chars)</span></label>
+                  <input type="password" id="v-pass" class="field-input" placeholder="Min. 8 characters" oninput="validateField('v-pass','v-pass-msg',v=>v.length>=8,'Password must be at least 8 characters')">
+                  <div class="field-msg" id="v-pass-msg"></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="field-wrap">
+                  <label>Phone Number * <span style="font-size:.65rem;color:var(--text3)">(10+ digits)</span></label>
+                  <input type="tel" id="v-phone" class="field-input" placeholder="+44 7700 000000" oninput="validateField('v-phone','v-phone-msg',v=>/^\+?[\d\s\-]{10,}$/.test(v),'Enter a valid phone number')">
+                  <div class="field-msg" id="v-phone-msg"></div>
+                </div>
+              </div>
+              <div class="col-12 text-center">
+                <button class="btn-primary-custom" onclick="submitValidationForm()">
+                  <i class="bi bi-shield-check me-2"></i>Validate All Fields
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="code-block mt-3" style="font-size:.74rem;">
+<span class="c-c">// Real-time field validation</span><br>
+<span class="c-k">function</span> <span class="c-n">validateField</span>(<span class="c-s">inputId</span>, <span class="c-s">msgId</span>, <span class="c-s">testFn</span>, <span class="c-s">errMsg</span>) {<br>
+&nbsp;&nbsp;<span class="c-k">const</span> <span class="c-n">ok</span> = <span class="c-n">testFn</span>(<span class="c-s">input</span>.<span class="c-n">value</span>);<br>
+&nbsp;&nbsp;<span class="c-c">// Toggle CSS classes based on result</span><br>
+&nbsp;&nbsp;<span class="c-n">input</span>.<span class="c-s">className</span> = ok ? <span class="c-v">"is-valid"</span> : <span class="c-v">"is-invalid"</span>;<br>
+&nbsp;&nbsp;<span class="c-n">msg</span>.<span class="c-s">textContent</span> = ok ? <span class="c-v">"✓ Looks good!"</span> : errMsg;<br>
+}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE NAV -->
+  <div style="border-top:1px solid var(--border2);padding:2rem 0;background:var(--bg2);">
+    <div class="container d-flex justify-content-between flex-wrap gap-3">
+      <a href="bootstrap.html" class="btn-outline-custom"><i class="bi bi-arrow-left"></i> Bootstrap</a>
+      <a href="contact.html" class="btn-primary-custom">Contact Page <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4 align-items-start justify-content-between">
+      <div class="col-lg-4">
+        <div class="footer-brand">Rajesh Karki</div>
+        <p class="text-small text-gray max-w-sm mt-xs">CET138 Full Stack Development ePortfolio.</p>
+        <div class="footer-socials mt-3">
+          <a href="https://github.com/rajeshkarki9" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+          <a href="https://www.linkedin.com/in/rajesh-karki-478a9b274/" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="https://karkirajesh.com.np/" target="_blank" title="Website"><i class="bi bi-globe"></i></a>
+          <a href="mailto:ctit25e.rjs@ismt.edu.np" title="Email"><i class="bi bi-envelope"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <h6 style="font-family:var(--font-head);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;">Navigation</h6>
+        <div class="footer-nav-links d-flex flex-column gap-2">
+          <a href="index.html">Home</a><a href="about.html">Full Stack Dev</a><a href="html.html">HTML</a>
+          <a href="css.html">CSS</a><a href="bootstrap.html">Bootstrap</a><a href="javascript.html">JavaScript</a><a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <h6 style="font-family:var(--font-head);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;">Tech Stack</h6>
+        <div class="d-flex flex-wrap gap-2"><span class="chip">HTML5</span><span class="chip-amber">CSS3</span><span class="chip">Bootstrap 5</span><span class="chip-amber">JavaScript</span></div>
+      </div>
+    </div>
+    <div class="footer-copy d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span>© 2024 Rajesh Karki · CET138 ePortfolio</span>
+      <span>Built with HTML, CSS, Bootstrap &amp; JS</span>
+    </div>
+  </div>
+</footer>
+
+<button id="backTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+<div id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+<script>
+  /* ── Ripple Button ── */
+  document.getElementById('rippleBtn').addEventListener('click', function(e) {
+    const btn = this;
+    const ripple = document.createElement('span');
+    const rect = btn.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    ripple.className = 'ripple';
+    ripple.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
+    btn.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  });
+
+  /* ── Todo List ── */
+  let todos = [
+    { id: 1, text: 'Learn HTML semantics', done: true },
+    { id: 2, text: 'Master CSS Flexbox', done: true },
+    { id: 3, text: 'Build with Bootstrap 5', done: false },
+    { id: 4, text: 'Practice JavaScript DOM', done: false },
+  ];
+  let nextId = 5;
+
+  function renderTodos() {
+    const list = document.getElementById('todoList');
+    const count = document.getElementById('todoCount');
+    const remaining = todos.filter(t => !t.done).length;
+    count.textContent = `${remaining} task${remaining !== 1 ? 's' : ''} remaining`;
+    list.innerHTML = todos.map(t => `
+      <div class="todo-item ${t.done ? 'done' : ''}" id="todo-${t.id}">
+        <input type="checkbox" class="todo-chk" ${t.done ? 'checked' : ''} onchange="toggleTodo(${t.id})">
+        <span style="flex:1">${t.text}</span>
+        <button class="todo-del" onclick="deleteTodo(${t.id})" title="Delete"><i class="bi bi-trash3"></i></button>
+      </div>
+    `).join('');
+  }
+
+  function addTodo() {
+    const input = document.getElementById('todoInput');
+    const text = input.value.trim();
+    if (!text) { input.focus(); return; }
+    todos.push({ id: nextId++, text, done: false });
+    input.value = '';
+    renderTodos();
+    showToast(`Task "${text.substring(0,30)}" added!`);
+  }
+
+  function toggleTodo(id) {
+    const t = todos.find(t => t.id === id);
+    if (t) { t.done = !t.done; renderTodos(); }
+  }
+
+  function deleteTodo(id) {
+    todos = todos.filter(t => t.id !== id);
+    renderTodos();
+  }
+
+  renderTodos();
+</script>
+</body>
+</html>
