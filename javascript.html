@@ -239,7 +239,7 @@
           <span class="eyebrow">Button Click Effects</span>
           <h3 class="section-title" style="font-size:1.6rem;">Ripple Effect Demo</h3>
           <div class="divider" style="background:linear-gradient(90deg,var(--amber),var(--accent))"></div>
-          <p style="color:var(--text2);font-size:.9rem;line-height:1.75;margin-bottom:1.5rem;">A ripple animation is created dynamically using JavaScript — calculating the click position and injecting a ripple element into the DOM.</p>
+          <p style="color:var(--text2);font-size:.9rem;line-height:1.75;margin-bottom:1.5rem;">A ripple animation is created dynamically using JavaScript calculating the click position and injecting a ripple element into the DOM.</p>
           <div class="text-center p-4" style="background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);">
             <button class="ripple-btn" id="rippleBtn"><i class="bi bi-lightning-charge me-2"></i>Click Me for Ripple!</button>
           </div>
@@ -258,7 +258,7 @@
           <span class="eyebrow">DOM Manipulation</span>
           <h3 class="section-title" style="font-size:1.6rem;">Dynamic To-Do List</h3>
           <div class="divider" style="background:linear-gradient(90deg,var(--amber),var(--accent))"></div>
-          <p style="color:var(--text2);font-size:.9rem;line-height:1.75;margin-bottom:1.5rem;">Add, check off, and delete tasks. Items are created, modified, and removed from the DOM entirely through JavaScript — no page reload needed.</p>
+          <p style="color:var(--text2);font-size:.9rem;line-height:1.75;margin-bottom:1.5rem;">Add, check off, and delete tasks. Items are created, modified, and removed from the DOM entirely through JavaScript no page reload needed.</p>
           <div style="background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:1.5rem;">
             <div class="d-flex gap-2 mb-3">
               <input type="text" id="todoInput" class="field-input" placeholder="Add a task..." style="flex:1;" onkeydown="if(event.key==='Enter')addTodo()">
@@ -282,7 +282,7 @@
           <span class="eyebrow">Real-Time Validation</span>
           <h2 class="section-title">JavaScript Form Validation</h2>
           <div class="divider centered" style="background:linear-gradient(90deg,var(--amber),var(--accent))"></div>
-          <p class="section-lead centered">Real-time validation using regex patterns, length checks, and visual feedback — all without any backend.</p>
+          <p class="section-lead centered">Real-time validation using regex patterns, length checks, and visual feedback all without any backend.</p>
         </div>
       </div>
       <div class="row justify-content-center">
@@ -292,14 +292,14 @@
               <div class="col-md-6">
                 <div class="field-wrap">
                   <label>Full Name * <span style="font-size:.65rem;color:var(--text3)">(min. 3 chars)</span></label>
-                  <input type="text" id="v-name" class="field-input" placeholder="Alex Johnson" oninput="validateField('v-name','v-name-msg',v=>v.trim().length>=3,'Minimum 3 characters required')">
+                  <input type="text" id="v-name" class="field-input" placeholder="Rajesh Karki" oninput="validateField('v-name','v-name-msg',v=>v.trim().length>=3,'Minimum 3 characters required')">
                   <div class="field-msg" id="v-name-msg"></div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="field-wrap">
                   <label>Email Address * <span style="font-size:.65rem;color:var(--text3)">(must be valid)</span></label>
-                  <input type="email" id="v-email" class="field-input" placeholder="alex@example.com" oninput="validateField('v-email','v-email-msg',v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),'Enter a valid email address')">
+                  <input type="email" id="v-email" class="field-input" placeholder="rajesh@example.com" oninput="validateField('v-email','v-email-msg',v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),'Enter a valid email address')">
                   <div class="field-msg" id="v-email-msg"></div>
                 </div>
               </div>
@@ -313,7 +313,7 @@
               <div class="col-md-6">
                 <div class="field-wrap">
                   <label>Phone Number * <span style="font-size:.65rem;color:var(--text3)">(10+ digits)</span></label>
-                  <input type="tel" id="v-phone" class="field-input" placeholder="+44 7700 000000" oninput="validateField('v-phone','v-phone-msg',v=>/^\+?[\d\s\-]{10,}$/.test(v),'Enter a valid phone number')">
+                  <input type="tel" id="v-phone" class="field-input" placeholder="+977 9800 000000" oninput="validateField('v-phone','v-phone-msg',v=>/^\+?[\d\s\-]{10,}$/.test(v),'Enter a valid phone number')">
                   <div class="field-msg" id="v-phone-msg"></div>
                 </div>
               </div>
