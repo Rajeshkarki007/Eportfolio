@@ -329,7 +329,7 @@
               <!-- Name -->
               <div class="col-md-6 pe-md-2">
                 <div class="field-wrap">
-                  <input type="text" id="cName" placeholder=" " autocomplete="name"/>
+                  <input type="text" id="cName" placeholder=" " autocomplete="name" required minlength="2" pattern="[a-zA-Z\s\-']{2,}" title="Only letters, spaces, hyphens, and apostrophes allowed"/>
                   <label for="cName">Full Name <span class="req-dot">●</span></label>
                   <span class="field-icon">
                     <i class="bi bi-check-circle-fill field-valid-icon" id="cName-ok"></i>
@@ -342,7 +342,7 @@
               <!-- Email -->
               <div class="col-md-6 ps-md-2">
                 <div class="field-wrap">
-                  <input type="email" id="cEmail" placeholder=" " autocomplete="email"/>
+                  <input type="email" id="cEmail" placeholder=" " autocomplete="email" required title="Enter a valid email address"/>
                   <label for="cEmail">Email Address <span class="req-dot">●</span></label>
                   <span class="field-icon">
                     <i class="bi bi-check-circle-fill field-valid-icon" id="cEmail-ok"></i>
@@ -355,7 +355,7 @@
               <!-- Subject dropdown -->
               <div class="col-12">
                 <div class="field-wrap">
-                  <select id="cSubject">
+                  <select id="cSubject" required>
                     <option value="" disabled selected hidden></option>
                     <option value="portfolio">Portfolio Feedback</option>
                     <option value="opportunity">Job / Internship Opportunity</option>
@@ -375,7 +375,7 @@
               <!-- Phone (optional) -->
               <div class="col-12">
                 <div class="field-wrap">
-                  <input type="tel" id="cPhone" placeholder=" " autocomplete="tel"/>
+                  <input type="tel" id="cPhone" placeholder=" " autocomplete="tel" pattern="[\d\s\+\-\(\)\.]+" title="Use digits, spaces, +, -, (), or . for phone numbers"/>
                   <label for="cPhone">Phone Number <span style="color:var(--text3);font-size:.7rem;">(optional)</span></label>
                   <span class="field-icon">
                     <i class="bi bi-check-circle-fill field-valid-icon" id="cPhone-ok"></i>
@@ -388,7 +388,7 @@
               <!-- Message -->
               <div class="col-12">
                 <div class="field-wrap textarea-wrap">
-                  <textarea id="cMessage" placeholder=" " maxlength="600"></textarea>
+                  <textarea id="cMessage" placeholder=" " maxlength="600" required minlength="20" title="Message must be between 20–600 characters"></textarea>
                   <label for="cMessage">Message <span class="req-dot">●</span></label>
                   <span class="field-icon">
                     <i class="bi bi-check-circle-fill field-valid-icon" id="cMessage-ok"></i>
@@ -648,31 +648,55 @@ function setFieldState(id, state, message) {
 
 // ── Validators ─────────────────────────────────────────────────────────
 const validators = {
-  cName:    v => v.trim().length >= 2,
-  cEmail:   v => /^[\w.\-+]+@[\w.\-]+\.[a-z]{2,}$/i.test(v.trim()),
+  cName: v => {
+    const trimmed = v.trim();
+    // At least 2 chars, only letters, spaces, hyphens, and apostrophes
+    return trimmed.length >= 2 && /^[a-zA-Z\s\-']{2,}$/.test(trimmed);
+  },
+  cEmail: v => {
+    const trimmed = v.trim().toLowerCase();
+    // Requires: proper local part @ valid domain with standard TLD (min 3 chars)
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3,}$/i;
+    return emailRegex.test(trimmed) && trimmed.length <= 254;
+  },
   cSubject: v => v !== '' && v !== null,
-  cPhone:   v => v.trim() === '' || /^[\d\s\+\-\(\)]{7,15}$/.test(v.trim()),
-  cMessage: v => v.trim().length >= 20,
+  cPhone: v => {
+    const trimmed = v.trim();
+    // Optional field: empty is valid
+    if (trimmed === '') return true;
+    // If provided: 7-15 chars, digits, spaces, +, -, (), dots
+    return /^[\d\s\+\-\(\)\.]{7,15}$/.test(trimmed);
+  },
+  cMessage: v => {
+    const trimmed = v.trim();
+    // Between 20 and 600 characters
+    return trimmed.length >= 20 && trimmed.length <= 600;
+  },
 };
 
 const errMsgs = {
-  cName:    'Please enter your full name (min 2 characters).',
-  cEmail:   'Enter a valid email address, e.g. name@example.com',
-  cSubject: 'Please choose a subject.',
-  cPhone:   'Enter a valid phone number or leave it blank.',
-  cMessage: 'Your message must be at least 20 characters.',
+  cName:    'Enter your full name (letters, spaces, hyphens only; min 2 chars).',
+  cEmail:   'Enter a valid email address (e.g., john.doe@example.com).',
+  cSubject: 'Please select a subject from the dropdown.',
+  cPhone:   'Enter a valid phone number or leave blank. Use digits, spaces, +, -, ( ), or .',
+  cMessage: 'Your message must be between 20–600 characters.',
 };
 
 function validateContactField(id) {
   const el  = document.getElementById(id);
   if (!el) return true;
+  
+  // Trim whitespace for validation (but don't modify the input value yet)
   const val = el.value;
-  const ok  = validators[id] ? validators[id](val) : true;
-
-  if (id === 'cPhone' && val.trim() === '') {
-    setFieldState(id, 'reset'); return true;  // optional — allow blank
+  const trimmed = val.trim();
+  
+  // Phone is optional — allow blank
+  if (id === 'cPhone' && trimmed === '') {
+    setFieldState(id, 'reset'); 
+    return true;
   }
 
+  const ok  = validators[id] ? validators[id](val) : true;
   setFieldState(id, ok ? 'valid' : 'invalid', ok ? '' : errMsgs[id]);
   return ok;
 }
@@ -701,23 +725,42 @@ if (msgEl && charCount) {
 function submitContactForm() {
   const fields   = ['cName','cEmail','cSubject','cPhone','cMessage'];
   let   allOk    = true;
+  let   errorMsg = [];
 
-  fields.forEach(id => { if (!validateContactField(id)) allOk = false; });
+  // Validate all fields
+  fields.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && !validateContactField(id)) {
+      allOk = false;
+      errorMsg.push(`${id === 'cName' ? 'Name' : id === 'cEmail' ? 'Email' : id === 'cSubject' ? 'Subject' : id === 'cPhone' ? 'Phone' : 'Message'} is invalid.`);
+    }
+  });
 
-  // Checkbox
+  // Validate checkbox
   const agree = document.getElementById('cAgree');
   const agreeMsg = document.getElementById('cAgree-msg');
   if (!agree.checked) {
-    agreeMsg.textContent = 'Please tick the checkbox to continue.';
+    agreeMsg.textContent = 'Please acknowledge the form notice to proceed.';
     allOk = false;
+    errorMsg.push('You must acknowledge the form notice.');
   } else {
     agreeMsg.textContent = '';
   }
 
   if (!allOk) {
-    showToast('Please fix the highlighted fields.', 'err');
+    const msg = errorMsg.length > 0 ? `Please fix the highlighted fields: ${errorMsg.join(' ')}` : 'Please fix all highlighted fields.';
+    showToast(msg, 'err');
     return;
   }
+
+  // Trim and prepare data (for demonstration)
+  const formData = {
+    name:    document.getElementById('cName').value.trim(),
+    email:   document.getElementById('cEmail').value.trim().toLowerCase(),
+    subject: document.getElementById('cSubject').value.trim(),
+    phone:   document.getElementById('cPhone').value.trim(),
+    message: document.getElementById('cMessage').value.trim(),
+  };
 
   // Simulate async submission
   const btn = document.getElementById('submitBtn');
@@ -734,24 +777,31 @@ function submitContactForm() {
 
 // ── Reset ───────────────────────────────────────────────────────────────
 function resetContactForm() {
-  // Reset all fields
+  // Reset all text/tel fields
   ['cName','cEmail','cPhone','cMessage'].forEach(id => {
     const el = document.getElementById(id);
     if (el) { el.value = ''; setFieldState(id, 'reset'); }
   });
+  
+  // Reset select
   const subj = document.getElementById('cSubject');
   if (subj) { subj.selectedIndex = 0; setFieldState('cSubject','reset'); }
+  
+  // Reset checkbox
   document.getElementById('cAgree').checked = false;
   document.getElementById('cAgree-msg').textContent = '';
+  
+  // Reset character counter
   if (charCount) charCount.textContent = '0 / 600';
+
+  // Reset button
+  const btn = document.getElementById('submitBtn');
+  btn.disabled  = false;
+  btn.innerHTML = '<i class="bi bi-send me-2"></i>Send Message';
 
   // Swap back
   document.getElementById('successOverlay').style.display = 'none';
   document.getElementById('formContent').style.display    = 'block';
-
-  const btn = document.getElementById('submitBtn');
-  btn.disabled  = false;
-  btn.innerHTML = '<i class="bi bi-send me-2"></i>Send Message';
 }
 </script>
 </body>
